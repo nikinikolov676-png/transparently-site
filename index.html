@@ -99,6 +99,18 @@
     margin-bottom:40px;
   }
 
+  @keyframes fadeUp{
+    from{ opacity:0; transform:translateY(14px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+  .hero-band .topbar{ animation:fadeUp .6s ease both; }
+  .hero-band h1.hero{ animation:fadeUp .6s ease .08s both; }
+  .hero-band .hero-lede{ animation:fadeUp .6s ease .16s both; }
+  .hero-band .hero-stats{ animation:fadeUp .6s ease .24s both; }
+  @media (prefers-reduced-motion: reduce){
+    .hero-band .topbar, .hero-band h1.hero, .hero-band .hero-lede, .hero-band .hero-stats{ animation:none; }
+  }
+
   /* ---------- top bar ---------- */
   .topbar{
     display:flex;
@@ -480,6 +492,12 @@
     padding:16px 16px 18px;
     background:var(--surface);
     position:relative;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .tier:hover{ transform:translateY(-3px); box-shadow:0 8px 20px var(--shadow); }
+  @media (prefers-reduced-motion: reduce){
+    .tier{ transition:none; }
+    .tier:hover{ transform:none; }
   }
   .tier-name{
     font-family:"Newsreader",serif;
@@ -578,6 +596,12 @@
     border-radius:11px;
     padding:18px 18px 20px;
     background:var(--surface);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .trust-item:hover{ transform:translateY(-3px); box-shadow:0 8px 20px var(--shadow); }
+  @media (prefers-reduced-motion: reduce){
+    .trust-item{ transition:none; }
+    .trust-item:hover{ transform:none; }
   }
   .trust-name{
     font-family:"Newsreader",serif;
@@ -660,9 +684,9 @@
     <p class="hero-lede">If an AI assistant talks to your customers, Article 50 of Regulation (EU) 2024/1689 usually requires you to disclose that. Answer four questions and get a dated transparency record you can use today.</p>
 
     <div class="hero-stats">
-      <div class="stat"><div class="num coral">€35M</div><div class="cap">max fine for non-compliance</div></div>
-      <div class="stat"><div class="num mint">40 sec</div><div class="cap">to check your chatbot</div></div>
-      <div class="stat"><div class="num gold">1 of 4</div><div class="cap">AI Act risk tiers — this covers it</div></div>
+      <div class="stat"><div class="num coral" data-prefix="€" data-target="35" data-suffix="M">€0M</div><div class="cap">max fine for non-compliance</div></div>
+      <div class="stat"><div class="num mint" data-prefix="" data-target="40" data-suffix=" sec">0 sec</div><div class="cap">to check your chatbot</div></div>
+      <div class="stat"><div class="num gold" data-prefix="" data-target="1" data-suffix=" of 4">0 of 4</div><div class="cap">AI Act risk tiers — this covers it</div></div>
     </div>
   </header>
 
@@ -953,5 +977,29 @@
   $('printBtn').addEventListener('click', () => window.print());
   $('printBtnFlag').addEventListener('click', () => window.print());
 
+  function countUpStats(){
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.querySelectorAll('.hero-stats .num').forEach(el => {
+      const target = Number(el.dataset.target);
+      const prefix = el.dataset.prefix || '';
+      const suffix = el.dataset.suffix || '';
+      if (reduceMotion || !Number.isFinite(target)){
+        el.textContent = `${prefix}${target}${suffix}`;
+        return;
+      }
+      const duration = 900;
+      const start = performance.now();
+      function tick(now){
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const value = Math.round(target * eased);
+        el.textContent = `${prefix}${value}${suffix}`;
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    });
+  }
+
   render();
+  countUpStats();
 </script>
