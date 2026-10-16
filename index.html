@@ -171,6 +171,31 @@
     .deadline-pill .live-dot{ animation:none; }
   }
 
+  .topbar-right{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .lang-switch{
+    font-family:inherit;
+    font-size:12px;
+    font-weight:600;
+    color:var(--brand-deep-ink);
+    background:rgba(246,244,236,0.1);
+    border:1px solid rgba(246,244,236,0.3);
+    border-radius:7px;
+    padding:6px 8px;
+    cursor:pointer;
+  }
+  .lang-switch:hover{ border-color:var(--gold); }
+  .lang-switch option{ color:#1e2321; }
+
+  .lang-note{
+    font-size:11.5px;
+    color:var(--ink-faint);
+    margin:14px 0 0;
+  }
+
   h1.hero{
     font-size:clamp(30px,4vw,44px);
     font-weight:500;
@@ -697,62 +722,72 @@
         </svg>
         <div class="brand-text">
           <span class="brand-name">Disclosure Check</span>
-          <span class="brand-sub">EU AI Act · Article 50 toolkit</span>
+          <span class="brand-sub" data-i18n="brandSub">EU AI Act · Article 50 toolkit</span>
         </div>
       </div>
-      <div class="deadline-pill"><span class="live-dot"></span>Enforcement deadline <span class="mono">2 Aug 2026</span></div>
+      <div class="topbar-right">
+        <div class="deadline-pill"><span class="live-dot"></span><span data-i18n="deadlineLabel">Enforcement deadline</span>&nbsp;<span class="mono">2 Aug 2026</span></div>
+        <select class="lang-switch" id="siteLang" aria-label="Site language">
+          <option value="en">EN</option>
+          <option value="de">DE</option>
+          <option value="fr">FR</option>
+          <option value="lt">LT</option>
+          <option value="et">ET</option>
+          <option value="hr">HR</option>
+        </select>
+      </div>
     </div>
 
-    <h1 class="hero">Does your chatbot need to say it's a bot?</h1>
-    <p class="hero-lede">Your customers deserve to know when they're talking to a machine, not a person. Soon, the law will insist on it too. Answer four quick questions and walk away with a dated notice you can publish today.</p>
+    <h1 class="hero" data-i18n="heroTitle">Does your chatbot need to say it's a bot?</h1>
+    <p class="hero-lede" data-i18n="heroLede">Your customers deserve to know when they're talking to a machine, not a person. Soon, the law will insist on it too. Answer four quick questions and walk away with a dated notice you can publish today.</p>
 
     <div class="hero-stats">
-      <div class="stat"><div class="num coral" data-prefix="€" data-target="35" data-suffix="M">€0M</div><div class="cap">the cost of staying quiet about it</div></div>
-      <div class="stat"><div class="num mint" data-prefix="" data-target="40" data-suffix=" sec">0 sec</div><div class="cap">to check your chatbot</div></div>
-      <div class="stat"><div class="num gold" data-prefix="" data-target="1" data-suffix=" of 4">0 of 4</div><div class="cap">AI Act risk tiers — this covers it</div></div>
+      <div class="stat"><div class="num coral" data-prefix="€" data-target="35" data-suffix="M">€0M</div><div class="cap" data-i18n="statFineCap">the cost of staying quiet about it</div></div>
+      <div class="stat"><div class="num mint" data-prefix="" data-target="40" data-suffix=" sec">0 sec</div><div class="cap" data-i18n="statTimeCap">to check your chatbot</div></div>
+      <div class="stat"><div class="num gold" data-prefix="" data-target="1" data-suffix=" of 4">0 of 4</div><div class="cap" data-i18n="statTierCap">AI Act risk tiers — this covers it</div></div>
     </div>
   </header>
 
   <div class="layout">
     <section class="card form-card" aria-label="Questionnaire">
-      <h2>Tell us about your assistant</h2>
-      <p>Takes about forty seconds.</p>
+      <h2 data-i18n="formTitle">Tell us about your assistant</h2>
+      <p data-i18n="formIntro">Takes about forty seconds.</p>
 
       <div class="field">
-        <label class="flabel" for="bizname">Business name</label>
+        <label class="flabel" for="bizname" data-i18n="labelBizname">Business name</label>
         <input class="text-input" id="bizname" type="text" value="Nordic Botanica" maxlength="60">
       </div>
 
       <div class="field">
-        <label class="flabel">Where does it talk to customers?</label>
+        <label class="flabel" data-i18n="labelChannels">Where does it talk to customers?</label>
         <div class="check-grid" id="channels">
-          <label class="chip"><input type="checkbox" value="Website chat widget" checked><span>Website chat widget</span></label>
-          <label class="chip"><input type="checkbox" value="Instagram DM" checked><span>Instagram DM</span></label>
-          <label class="chip"><input type="checkbox" value="Facebook Messenger"><span>Facebook Messenger</span></label>
-          <label class="chip"><input type="checkbox" value="WhatsApp Business"><span>WhatsApp Business</span></label>
+          <label class="chip"><input type="checkbox" value="Website chat widget" checked><span data-i18n="chipWebsite">Website chat widget</span></label>
+          <label class="chip"><input type="checkbox" value="Instagram DM" checked><span data-i18n="chipInstagram">Instagram DM</span></label>
+          <label class="chip"><input type="checkbox" value="Facebook Messenger"><span data-i18n="chipMessenger">Facebook Messenger</span></label>
+          <label class="chip"><input type="checkbox" value="WhatsApp Business"><span data-i18n="chipWhatsapp">WhatsApp Business</span></label>
         </div>
       </div>
 
       <div class="field">
-        <label class="flabel">What does it actually do?</label>
+        <label class="flabel" data-i18n="labelUsecase">What does it actually do?</label>
         <div class="radio-list" id="usecase">
           <label class="radio-row">
             <input type="radio" name="use" value="general" checked>
-            <span class="rt"><b>Answers questions, tracks orders, general support</b><small>Limited-risk — disclosure is usually all that's required</small></span>
+            <span class="rt"><b data-i18n="useGeneralTitle">Answers questions, tracks orders, general support</b><small data-i18n="useGeneralSub">Limited-risk — disclosure is usually all that's required</small></span>
           </label>
           <label class="radio-row">
             <input type="radio" name="use" value="decision">
-            <span class="rt"><b>Also approves or denies discounts, refunds, or credit automatically</b><small>Likely needs more than a disclosure notice</small></span>
+            <span class="rt"><b data-i18n="useDecisionTitle">Also approves or denies discounts, refunds, or credit automatically</b><small data-i18n="useDecisionSub">Likely needs more than a disclosure notice</small></span>
           </label>
           <label class="radio-row">
             <input type="radio" name="use" value="screening">
-            <span class="rt"><b>Screens, ranks, or filters job applicants</b><small>High-risk under Annex III — this tool isn't enough on its own</small></span>
+            <span class="rt"><b data-i18n="useScreeningTitle">Screens, ranks, or filters job applicants</b><small data-i18n="useScreeningSub">High-risk under Annex III — this tool isn't enough on its own</small></span>
           </label>
         </div>
       </div>
 
       <div class="field">
-        <label class="flabel" for="lang">Site language for the notice</label>
+        <label class="flabel" for="lang" data-i18n="labelNoticeLang">Site language for the notice</label>
         <select class="select-input" id="lang">
           <option value="en">English — available</option>
           <option value="lt" disabled>Lithuanian — in full version</option>
@@ -762,7 +797,7 @@
       </div>
 
       <div class="field">
-        <label class="flabel" for="signatory">Responsible person (for the record)</label>
+        <label class="flabel" for="signatory" data-i18n="labelSignatory">Responsible person (for the record)</label>
         <input class="text-input" id="signatory" type="text" value="Eglė Jankauskaitė, Operations Lead" maxlength="60">
       </div>
     </section>
@@ -773,15 +808,15 @@
       </svg>
       <div class="rec-top">
         <div>
-          <div class="rec-label">AI Transparency Record</div>
+          <div class="rec-label" data-i18n="recLabel">AI Transparency Record</div>
           <div class="rec-ref mono" id="recRef">ATR-20261014-NB</div>
         </div>
-        <div class="rec-date mono" id="recDate">Generated<br>14 Oct 2026</div>
+        <div class="rec-date mono"><span data-i18n="recGenerated">Generated</span><br><span id="recDate">14 Oct 2026</span></div>
       </div>
 
       <div class="status-pill ok" id="statusPill">
         <span class="dot"></span>
-        <span id="statusText">Limited risk — disclosure required</span>
+        <span id="statusText" data-i18n="statusOk">Limited risk — disclosure required</span>
       </div>
 
       <div id="okContent">
@@ -791,103 +826,104 @@
         <div class="legal-basis mono">Art. 50(1): natural persons must be informed they are interacting with an AI system. Art. 50(5): in a clear and distinguishable manner, at the latest at the time of first interaction.</div>
         <p class="placement-tip" id="placementTip">Show this as the <b>first message</b>, before any other reply — that satisfies "at the latest at the time of first interaction." Pin it in your Website chat widget, and pin it to your Instagram DM welcome note.</p>
         <div class="rec-actions">
-          <button class="btn primary" id="copyBtn">Copy notice text</button>
-          <button class="btn" id="printBtn">Print record</button>
-          <span class="toast" id="toast">Copied</span>
+          <button class="btn primary" id="copyBtn" data-i18n="btnCopy">Copy notice text</button>
+          <button class="btn" id="printBtn" data-i18n="btnPrint">Print record</button>
+          <span class="toast" id="toast" data-i18n="toastCopied">Copied</span>
         </div>
+        <p class="lang-note" data-i18n="langNotice">The generated legal notice stays in English for now, until each language gets its own legal review.</p>
       </div>
 
       <div id="flagContent" style="display:none;">
         <div class="flag-box">
-          <p><b>This generator only covers Article 50 disclosure notices for limited-risk assistants.</b></p>
+          <p><b data-i18n="flagTitle">This generator only covers Article 50 disclosure notices for limited-risk assistants.</b></p>
           <p id="flagReason">Automated decisions about discounts, refunds, or credit can trigger additional obligations under Art. 6 and Annex III. Get a full risk assessment before relying on a disclosure notice alone.</p>
         </div>
         <div class="rec-actions">
-          <button class="btn" id="printBtnFlag">Print record</button>
+          <button class="btn" id="printBtnFlag" data-i18n="btnPrint">Print record</button>
         </div>
       </div>
 
       <div class="sig">
-        <span>Signed: <b id="sigName">Eglė Jankauskaitė, Operations Lead</b></span>
-        <span>Record id: <b id="sigRef" class="mono">ATR-20261014-NB</b></span>
+        <span><span data-i18n="sigSigned">Signed:</span>&nbsp;<b id="sigName">Eglė Jankauskaitė, Operations Lead</b></span>
+        <span><span data-i18n="sigRecordId">Record id:</span>&nbsp;<b id="sigRef" class="mono">ATR-20261014-NB</b></span>
       </div>
     </aside>
   </div>
 
   <section class="steps">
-    <h3>How it works</h3>
+    <h3 data-i18n="stepsTitle">How it works</h3>
     <div class="step-grid">
       <div class="step">
         <div class="step-num">1</div>
-        <div class="step-name">Answer four questions</div>
-        <p>About forty seconds. No account, no card.</p>
+        <div class="step-name" data-i18n="step1Title">Answer four questions</div>
+        <p data-i18n="step1Desc">About forty seconds. No account, no card.</p>
       </div>
       <div class="step">
         <div class="step-num">2</div>
-        <div class="step-name">Get a dated record</div>
-        <p>A notice that quotes the exact article it's based on, plus where to place it.</p>
+        <div class="step-name" data-i18n="step2Title">Get a dated record</div>
+        <p data-i18n="step2Desc">A notice that quotes the exact article it's based on, plus where to place it.</p>
       </div>
       <div class="step">
         <div class="step-num">3</div>
-        <div class="step-name">Publish it today</div>
-        <p>Copy it into your chat widget's first message. Done.</p>
+        <div class="step-name" data-i18n="step3Title">Publish it today</div>
+        <p data-i18n="step3Desc">Copy it into your chat widget's first message. Done.</p>
       </div>
     </div>
   </section>
 
   <section class="tiers">
-    <h3>Where your assistant sits under the AI Act</h3>
+    <h3 data-i18n="tiersTitle">Where your assistant sits under the AI Act</h3>
     <div class="tier-grid">
       <div class="tier tier-ban">
-        <div class="tier-name">Unacceptable</div>
-        <p>Banned outright — manipulative or exploitative AI, social scoring.</p>
-        <div class="ex">e.g. covert behavioural manipulation</div>
+        <div class="tier-name" data-i18n="tierBanName">Unacceptable</div>
+        <p data-i18n="tierBanDesc">Banned outright — manipulative or exploitative AI, social scoring.</p>
+        <div class="ex" data-i18n="tierBanEx">e.g. covert behavioural manipulation</div>
       </div>
       <div class="tier tier-high">
-        <div class="tier-name">High-risk</div>
-        <p>Strict obligations: risk management, technical documentation, human oversight.</p>
-        <div class="ex">e.g. CV screening, credit scoring</div>
+        <div class="tier-name" data-i18n="tierHighName">High-risk</div>
+        <p data-i18n="tierHighDesc">Strict obligations: risk management, technical documentation, human oversight.</p>
+        <div class="ex" data-i18n="tierHighEx">e.g. CV screening, credit scoring</div>
       </div>
       <div class="tier tier-limited" id="limitedTier">
-        <span class="tier-tag">This tool</span>
-        <div class="tier-name">Limited risk</div>
-        <p>Transparency only — tell people they're talking to AI.</p>
-        <div class="ex">e.g. customer-service chatbots</div>
+        <span class="tier-tag" data-i18n="tierLimitedTag">This tool</span>
+        <div class="tier-name" data-i18n="tierLimitedName">Limited risk</div>
+        <p data-i18n="tierLimitedDesc">Transparency only — tell people they're talking to AI.</p>
+        <div class="ex" data-i18n="tierLimitedEx">e.g. customer-service chatbots</div>
       </div>
       <div class="tier tier-min">
-        <div class="tier-name">Minimal risk</div>
-        <p>No specific obligations under the Act.</p>
-        <div class="ex">e.g. spam filters, spell-check</div>
+        <div class="tier-name" data-i18n="tierMinName">Minimal risk</div>
+        <p data-i18n="tierMinDesc">No specific obligations under the Act.</p>
+        <div class="ex" data-i18n="tierMinEx">e.g. spam filters, spell-check</div>
       </div>
     </div>
   </section>
 
   <section class="trust">
-    <h3>Why trust this</h3>
+    <h3 data-i18n="trustTitle">Why trust this</h3>
     <div class="trust-grid">
       <div class="trust-item">
-        <div class="trust-name">Every line cites an article</div>
-        <p>Not "best practice." The notice and its timing trace to Art. 50(1) and 50(5) — you can check the wording yourself.</p>
+        <div class="trust-name" data-i18n="trust1Title">Every line cites an article</div>
+        <p data-i18n="trust1Desc">Not "best practice." The notice and its timing trace to Art. 50(1) and 50(5) — you can check the wording yourself.</p>
       </div>
       <div class="trust-item">
-        <div class="trust-name">Test it before you trust it</div>
-        <p>The full tool is open above, free, no account. See the exact output before you decide anything.</p>
+        <div class="trust-name" data-i18n="trust2Title">Test it before you trust it</div>
+        <p data-i18n="trust2Desc">The full tool is open above, free, no account. See the exact output before you decide anything.</p>
       </div>
       <div class="trust-item">
-        <div class="trust-name">Built for one job</div>
-        <p>Not a forty-tab compliance suite. One regulation, one risk tier, one clear answer.</p>
+        <div class="trust-name" data-i18n="trust3Title">Built for one job</div>
+        <p data-i18n="trust3Desc">Not a forty-tab compliance suite. One regulation, one risk tier, one clear answer.</p>
       </div>
     </div>
     <div class="founder-note">
-      <p>"I built Transparently as an independent, EU-based developer — not a law firm. That's also why it only covers the one thing I can get precisely right: the Article 50 disclosure notice. Everything else, it tells you to go check with someone qualified."</p>
-      <div class="founder-sig">— Nikolay, founder</div>
+      <p data-i18n="founderQuote">"I built Transparently as an independent, EU-based developer — not a law firm. That's also why it only covers the one thing I can get precisely right: the Article 50 disclosure notice. Everything else, it tells you to go check with someone qualified."</p>
+      <div class="founder-sig" data-i18n="founderSig">— Nikolay, founder</div>
     </div>
   </section>
 
-  <p class="disclaimer">This tool is informational and does not constitute legal advice. It is designed to help limited-risk AI deployers meet Article 50 transparency obligations; it does not cover high-risk classification, technical documentation, or Member State-specific guidance. Review generated text before publishing it.</p>
+  <p class="disclaimer" data-i18n="disclaimer">This tool is informational and does not constitute legal advice. It is designed to help limited-risk AI deployers meet Article 50 transparency obligations; it does not cover high-risk classification, technical documentation, or Member State-specific guidance. Review generated text before publishing it.</p>
 
   <footer class="site-foot">
-    <span>Transparently — Varna, Bulgaria</span>
+    <span data-i18n="footerLoc">Transparently — Varna, Bulgaria</span>
     <a href="mailto:hello@transparently.eu">hello@transparently.eu</a>
   </footer>
 </div>
@@ -897,6 +933,444 @@
   const bizname = $('bizname'), signatory = $('signatory'), lang = $('lang');
   const usecaseRadios = document.querySelectorAll('input[name="use"]');
   const channelBoxes = document.querySelectorAll('#channels input[type="checkbox"]');
+
+  const translations = {
+    en: {
+      brandSub: `EU AI Act · Article 50 toolkit`,
+      deadlineLabel: `Enforcement deadline`,
+      heroTitle: `Does your chatbot need to say it's a bot?`,
+      heroLede: `Your customers deserve to know when they're talking to a machine, not a person. Soon, the law will insist on it too. Answer four quick questions and walk away with a dated notice you can publish today.`,
+      statFineCap: `the cost of staying quiet about it`,
+      statTimeCap: `to check your chatbot`,
+      statTierCap: `AI Act risk tiers — this covers it`,
+      formTitle: `Tell us about your assistant`,
+      formIntro: `Takes about forty seconds.`,
+      labelBizname: `Business name`,
+      labelChannels: `Where does it talk to customers?`,
+      chipWebsite: `Website chat widget`,
+      chipInstagram: `Instagram DM`,
+      chipMessenger: `Facebook Messenger`,
+      chipWhatsapp: `WhatsApp Business`,
+      labelUsecase: `What does it actually do?`,
+      useGeneralTitle: `Answers questions, tracks orders, general support`,
+      useGeneralSub: `Limited-risk — disclosure is usually all that's required`,
+      useDecisionTitle: `Also approves or denies discounts, refunds, or credit automatically`,
+      useDecisionSub: `Likely needs more than a disclosure notice`,
+      useScreeningTitle: `Screens, ranks, or filters job applicants`,
+      useScreeningSub: `High-risk under Annex III — this tool isn't enough on its own`,
+      labelNoticeLang: `Site language for the notice`,
+      labelSignatory: `Responsible person (for the record)`,
+      recLabel: `AI Transparency Record`,
+      recGenerated: `Generated`,
+      statusOk: `Limited risk — disclosure required`,
+      btnCopy: `Copy notice text`,
+      btnPrint: `Print record`,
+      toastCopied: `Copied`,
+      langNotice: `The generated legal notice stays in English for now, until each language gets its own legal review.`,
+      flagTitle: `This generator only covers Article 50 disclosure notices for limited-risk assistants.`,
+      sigSigned: `Signed:`,
+      sigRecordId: `Record id:`,
+      stepsTitle: `How it works`,
+      step1Title: `Answer four questions`,
+      step1Desc: `About forty seconds. No account, no card.`,
+      step2Title: `Get a dated record`,
+      step2Desc: `A notice that quotes the exact article it's based on, plus where to place it.`,
+      step3Title: `Publish it today`,
+      step3Desc: `Copy it into your chat widget's first message. Done.`,
+      tiersTitle: `Where your assistant sits under the AI Act`,
+      tierBanName: `Unacceptable`,
+      tierBanDesc: `Banned outright — manipulative or exploitative AI, social scoring.`,
+      tierBanEx: `e.g. covert behavioural manipulation`,
+      tierHighName: `High-risk`,
+      tierHighDesc: `Strict obligations: risk management, technical documentation, human oversight.`,
+      tierHighEx: `e.g. CV screening, credit scoring`,
+      tierLimitedTag: `This tool`,
+      tierLimitedName: `Limited risk`,
+      tierLimitedDesc: `Transparency only — tell people they're talking to AI.`,
+      tierLimitedEx: `e.g. customer-service chatbots`,
+      tierMinName: `Minimal risk`,
+      tierMinDesc: `No specific obligations under the Act.`,
+      tierMinEx: `e.g. spam filters, spell-check`,
+      trustTitle: `Why trust this`,
+      trust1Title: `Every line cites an article`,
+      trust1Desc: `Not "best practice." The notice and its timing trace to Art. 50(1) and 50(5) — you can check the wording yourself.`,
+      trust2Title: `Test it before you trust it`,
+      trust2Desc: `The full tool is open above, free, no account. See the exact output before you decide anything.`,
+      trust3Title: `Built for one job`,
+      trust3Desc: `Not a forty-tab compliance suite. One regulation, one risk tier, one clear answer.`,
+      founderQuote: `"I built Transparently as an independent, EU-based developer — not a law firm. That's also why it only covers the one thing I can get precisely right: the Article 50 disclosure notice. Everything else, it tells you to go check with someone qualified."`,
+      founderSig: `— Nikolay, founder`,
+      disclaimer: `This tool is informational and does not constitute legal advice. It is designed to help limited-risk AI deployers meet Article 50 transparency obligations; it does not cover high-risk classification, technical documentation, or Member State-specific guidance. Review generated text before publishing it.`,
+      footerLoc: `Transparently — Varna, Bulgaria`
+    },
+    de: {
+      brandSub: `EU-KI-Verordnung · Artikel-50-Tool`,
+      deadlineLabel: `Frist für die Durchsetzung`,
+      heroTitle: `Muss Ihr Chatbot sagen, dass er ein Bot ist?`,
+      heroLede: `Ihre Kunden haben das Recht zu wissen, wenn sie mit einer Maschine sprechen, nicht mit einem Menschen. Bald verlangt das auch das Gesetz. Beantworten Sie vier kurze Fragen und erhalten Sie einen datierten Hinweis, den Sie noch heute veröffentlichen können.`,
+      statFineCap: `kostet es, wenn Sie schweigen`,
+      statTimeCap: `um Ihren Chatbot zu prüfen`,
+      statTierCap: `Risikostufen im AI Act — diese hier wird abgedeckt`,
+      formTitle: `Erzählen Sie uns von Ihrem Assistenten`,
+      formIntro: `Dauert etwa vierzig Sekunden.`,
+      labelBizname: `Name des Unternehmens`,
+      labelChannels: `Wo spricht er mit Kunden?`,
+      chipWebsite: `Chat-Widget auf der Website`,
+      chipInstagram: `Instagram-DM`,
+      chipMessenger: `Facebook Messenger`,
+      chipWhatsapp: `WhatsApp Business`,
+      labelUsecase: `Was macht er genau?`,
+      useGeneralTitle: `Beantwortet Fragen, verfolgt Bestellungen, allgemeiner Support`,
+      useGeneralSub: `Geringes Risiko — ein Hinweis reicht in der Regel aus`,
+      useDecisionTitle: `Genehmigt oder lehnt auch automatisch Rabatte, Rückerstattungen oder Kredite ab`,
+      useDecisionSub: `Erfordert wahrscheinlich mehr als nur einen Hinweis`,
+      useScreeningTitle: `Filtert, bewertet oder sortiert Bewerbungen`,
+      useScreeningSub: `Hochrisiko nach Anhang III — dieses Tool allein reicht nicht aus`,
+      labelNoticeLang: `Sprache des Hinweistexts`,
+      labelSignatory: `Verantwortliche Person (für den Nachweis)`,
+      recLabel: `KI-Transparenznachweis`,
+      recGenerated: `Erstellt`,
+      statusOk: `Geringes Risiko — Hinweispflicht`,
+      btnCopy: `Hinweistext kopieren`,
+      btnPrint: `Nachweis drucken`,
+      toastCopied: `Kopiert`,
+      langNotice: `Der generierte Rechtstext bleibt vorerst auf Englisch, bis jede Sprache einzeln rechtlich geprüft ist.`,
+      flagTitle: `Dieser Generator deckt nur Artikel-50-Hinweise für Systeme mit geringem Risiko ab.`,
+      sigSigned: `Unterzeichnet:`,
+      sigRecordId: `Nachweis-ID:`,
+      stepsTitle: `So funktioniert's`,
+      step1Title: `Vier Fragen beantworten`,
+      step1Desc: `Etwa vierzig Sekunden. Kein Konto, keine Karte.`,
+      step2Title: `Datierten Nachweis erhalten`,
+      step2Desc: `Ein Hinweis, der genau den Artikel zitiert, auf dem er beruht — plus Angabe, wo er platziert werden soll.`,
+      step3Title: `Noch heute veröffentlichen`,
+      step3Desc: `In die erste Nachricht Ihres Chat-Widgets einfügen. Fertig.`,
+      tiersTitle: `Wo Ihr Assistent im AI Act einzuordnen ist`,
+      tierBanName: `Verboten`,
+      tierBanDesc: `Grundsätzlich untersagt — manipulative oder ausbeuterische KI, Social Scoring.`,
+      tierBanEx: `z. B. verdeckte Verhaltensmanipulation`,
+      tierHighName: `Hochrisiko`,
+      tierHighDesc: `Strenge Pflichten: Risikomanagement, technische Dokumentation, menschliche Aufsicht.`,
+      tierHighEx: `z. B. Bewerber-Screening, Bonitätsprüfung`,
+      tierLimitedTag: `Dieses Tool`,
+      tierLimitedName: `Geringes Risiko`,
+      tierLimitedDesc: `Nur Transparenz — den Menschen sagen, dass sie mit KI sprechen.`,
+      tierLimitedEx: `z. B. Kundenservice-Chatbots`,
+      tierMinName: `Minimales Risiko`,
+      tierMinDesc: `Keine besonderen Pflichten nach dem AI Act.`,
+      tierMinEx: `z. B. Spamfilter, Rechtschreibprüfung`,
+      trustTitle: `Warum Sie uns vertrauen können`,
+      trust1Title: `Jede Zeile zitiert einen Artikel`,
+      trust1Desc: `Keine „Best Practice". Der Hinweis und sein Zeitpunkt beruhen auf Art. 50(1) und 50(5) — Sie können den Wortlaut selbst nachprüfen.`,
+      trust2Title: `Erst testen, dann vertrauen`,
+      trust2Desc: `Das vollständige Tool ist oben geöffnet, kostenlos, ohne Konto. Sehen Sie das Ergebnis, bevor Sie sich entscheiden.`,
+      trust3Title: `Für eine einzige Aufgabe gebaut`,
+      trust3Desc: `Keine Compliance-Suite mit vierzig Reitern. Eine Verordnung, eine Risikostufe, eine klare Antwort.`,
+      founderQuote: `„Ich habe Transparently als unabhängiger Entwickler in der EU gebaut — keine Anwaltskanzlei. Deshalb deckt es nur das eine ab, was ich wirklich präzise beherrsche: den Artikel-50-Hinweis. Für alles andere verweist es Sie an jemanden Qualifizierten."`,
+      founderSig: `— Nikolay, Gründer`,
+      disclaimer: `Dieses Tool dient nur der Information und stellt keine Rechtsberatung dar. Es soll Betreibern von KI-Systemen mit geringem Risiko helfen, die Transparenzpflichten nach Artikel 50 zu erfüllen; es deckt keine Hochrisiko-Einstufung, technische Dokumentation oder länderspezifische Vorgaben ab. Prüfen Sie den erzeugten Text vor der Veröffentlichung.`,
+      footerLoc: `Transparently — Varna, Bulgarien`
+    },
+    fr: {
+      brandSub: `Règlement IA UE · Outil Article 50`,
+      deadlineLabel: `Échéance d'application`,
+      heroTitle: `Votre chatbot doit-il dire qu'il en est un ?`,
+      heroLede: `Vos clients méritent de savoir quand ils parlent à une machine, pas à une personne. Bientôt, la loi l'exigera aussi. Répondez à quatre questions rapides et repartez avec un avis daté que vous pouvez publier dès aujourd'hui.`,
+      statFineCap: `le prix du silence`,
+      statTimeCap: `pour vérifier votre chatbot`,
+      statTierCap: `niveaux de risque de l'IA Act — celui-ci est couvert`,
+      formTitle: `Parlez-nous de votre assistant`,
+      formIntro: `Environ quarante secondes.`,
+      labelBizname: `Nom de l'entreprise`,
+      labelChannels: `Où parle-t-il à vos clients ?`,
+      chipWebsite: `Widget de chat du site`,
+      chipInstagram: `DM Instagram`,
+      chipMessenger: `Facebook Messenger`,
+      chipWhatsapp: `WhatsApp Business`,
+      labelUsecase: `Que fait-il exactement ?`,
+      useGeneralTitle: `Répond aux questions, suit les commandes, support général`,
+      useGeneralSub: `Risque limité — un avis suffit généralement`,
+      useDecisionTitle: `Approuve ou refuse aussi automatiquement des remises, remboursements ou crédits`,
+      useDecisionSub: `Nécessite probablement plus qu'un simple avis`,
+      useScreeningTitle: `Filtre, classe ou trie les candidatures`,
+      useScreeningSub: `Risque élevé selon l'annexe III — cet outil seul ne suffit pas`,
+      labelNoticeLang: `Langue de l'avis`,
+      labelSignatory: `Personne responsable (pour l'enregistrement)`,
+      recLabel: `Registre de transparence IA`,
+      recGenerated: `Généré le`,
+      statusOk: `Risque limité — avis requis`,
+      btnCopy: `Copier le texte de l'avis`,
+      btnPrint: `Imprimer le registre`,
+      toastCopied: `Copié`,
+      langNotice: `L'avis juridique généré reste en anglais pour l'instant, jusqu'à ce que chaque langue reçoive sa propre relecture juridique.`,
+      flagTitle: `Ce générateur ne couvre que les avis Article 50 pour les assistants à risque limité.`,
+      sigSigned: `Signé :`,
+      sigRecordId: `ID du registre :`,
+      stepsTitle: `Comment ça marche`,
+      step1Title: `Répondez à quatre questions`,
+      step1Desc: `Environ quarante secondes. Sans compte, sans carte.`,
+      step2Title: `Obtenez un registre daté`,
+      step2Desc: `Un avis qui cite précisément l'article sur lequel il repose, et où le placer.`,
+      step3Title: `Publiez-le dès aujourd'hui`,
+      step3Desc: `Collez-le dans le premier message de votre widget de chat. Terminé.`,
+      tiersTitle: `Où se situe votre assistant dans l'IA Act`,
+      tierBanName: `Inacceptable`,
+      tierBanDesc: `Interdit purement et simplement — IA manipulatrice ou exploitante, notation sociale.`,
+      tierBanEx: `ex. manipulation comportementale dissimulée`,
+      tierHighName: `Risque élevé`,
+      tierHighDesc: `Obligations strictes : gestion des risques, documentation technique, supervision humaine.`,
+      tierHighEx: `ex. tri de CV, scoring de crédit`,
+      tierLimitedTag: `Cet outil`,
+      tierLimitedName: `Risque limité`,
+      tierLimitedDesc: `Transparence uniquement — informer les gens qu'ils parlent à une IA.`,
+      tierLimitedEx: `ex. chatbots de service client`,
+      tierMinName: `Risque minimal`,
+      tierMinDesc: `Aucune obligation spécifique selon le règlement.`,
+      tierMinEx: `ex. filtres anti-spam, correcteur orthographique`,
+      trustTitle: `Pourquoi nous faire confiance`,
+      trust1Title: `Chaque ligne cite un article`,
+      trust1Desc: `Pas de « bonnes pratiques ». L'avis et son calendrier reposent sur les art. 50(1) et 50(5) — vous pouvez vérifier le texte vous-même.`,
+      trust2Title: `Testez avant de faire confiance`,
+      trust2Desc: `L'outil complet est ouvert ci-dessus, gratuit, sans compte. Voyez le résultat exact avant de décider quoi que ce soit.`,
+      trust3Title: `Conçu pour une seule tâche`,
+      trust3Desc: `Pas une suite de conformité à quarante onglets. Un règlement, un niveau de risque, une réponse claire.`,
+      founderQuote: `« J'ai créé Transparently en tant que développeur indépendant basé dans l'UE — pas un cabinet d'avocats. C'est aussi pourquoi il ne couvre que la seule chose que je peux maîtriser précisément : l'avis de l'article 50. Pour tout le reste, il vous renvoie vers quelqu'un de qualifié. »`,
+      founderSig: `— Nikolay, fondateur`,
+      disclaimer: `Cet outil est informatif et ne constitue pas un conseil juridique. Il est conçu pour aider les déployeurs de systèmes d'IA à risque limité à respecter les obligations de transparence de l'article 50 ; il ne couvre pas la classification à haut risque, la documentation technique ni les règles propres à chaque État membre. Relisez le texte généré avant de le publier.`,
+      footerLoc: `Transparently — Varna, Bulgarie`
+    },
+    lt: {
+      brandSub: `ES DI aktas · 50 straipsnio įrankis`,
+      deadlineLabel: `Taikymo terminas`,
+      heroTitle: `Ar jūsų pokalbių robotas turi prisipažinti, kad jis – robotas?`,
+      heroLede: `Jūsų klientai nusipelno žinoti, kada kalba su mašina, o ne su žmogumi. Netrukus to reikalaus ir įstatymas. Atsakykite į keturis trumpus klausimus ir gaukite datuotą pranešimą, kurį galite skelbti jau šiandien.`,
+      statFineCap: `kainuoja tylėjimas`,
+      statTimeCap: `patikrinti pokalbių robotą`,
+      statTierCap: `DI akto rizikos lygiai — šis apimtas`,
+      formTitle: `Papasakokite apie savo asistentą`,
+      formIntro: `Užtrunka apie keturiasdešimt sekundžių.`,
+      labelBizname: `Įmonės pavadinimas`,
+      labelChannels: `Kur jis bendrauja su klientais?`,
+      chipWebsite: `Svetainės pokalbių langas`,
+      chipInstagram: `Instagram tiesioginė žinutė`,
+      chipMessenger: `Facebook Messenger`,
+      chipWhatsapp: `WhatsApp Business`,
+      labelUsecase: `Ką jis iš tikrųjų daro?`,
+      useGeneralTitle: `Atsako į klausimus, seka užsakymus, bendras aptarnavimas`,
+      useGeneralSub: `Ribota rizika — paprastai pakanka pranešimo`,
+      useDecisionTitle: `Taip pat automatiškai patvirtina ar atmeta nuolaidas, grąžinimus ar kreditus`,
+      useDecisionSub: `Tikėtina, prireiks daugiau nei pranešimo`,
+      useScreeningTitle: `Atrenka, reitinguoja ar filtruoja kandidatus`,
+      useScreeningSub: `Didelė rizika pagal III priedą — vien šio įrankio nepakanka`,
+      labelNoticeLang: `Pranešimo kalba`,
+      labelSignatory: `Atsakingas asmuo (įrašui)`,
+      recLabel: `DI skaidrumo įrašas`,
+      recGenerated: `Sukurta`,
+      statusOk: `Ribota rizika — būtinas pranešimas`,
+      btnCopy: `Kopijuoti pranešimo tekstą`,
+      btnPrint: `Spausdinti įrašą`,
+      toastCopied: `Nukopijuota`,
+      langNotice: `Sugeneruotas teisinis tekstas kol kas lieka anglų kalba, kol kiekviena kalba sulauks atskiros teisinės peržiūros.`,
+      flagTitle: `Šis generatorius apima tik Article 50 pranešimus ribotos rizikos asistentams.`,
+      sigSigned: `Pasirašė:`,
+      sigRecordId: `Įrašo ID:`,
+      stepsTitle: `Kaip tai veikia`,
+      step1Title: `Atsakykite į keturis klausimus`,
+      step1Desc: `Apie keturiasdešimt sekundžių. Be paskyros, be kortelės.`,
+      step2Title: `Gaukite datuotą įrašą`,
+      step2Desc: `Pranešimą, kuriame nurodytas tikslus straipsnis, kuriuo jis grindžiamas, ir kur jį patalpinti.`,
+      step3Title: `Paskelbkite jau šiandien`,
+      step3Desc: `Įklijuokite jį kaip pirmąją žinutę savo pokalbių lange. Viskas.`,
+      tiersTitle: `Kur jūsų asistentas patenka pagal DI aktą`,
+      tierBanName: `Nepriimtina`,
+      tierBanDesc: `Visiškai draudžiama — manipuliuojantis ar išnaudojantis DI, socialinis reitingavimas.`,
+      tierBanEx: `pvz., paslėpta elgsenos manipuliacija`,
+      tierHighName: `Didelė rizika`,
+      tierHighDesc: `Griežtos pareigos: rizikos valdymas, techninė dokumentacija, žmogaus priežiūra.`,
+      tierHighEx: `pvz., CV atranka, kreditingumo vertinimas`,
+      tierLimitedTag: `Šis įrankis`,
+      tierLimitedName: `Ribota rizika`,
+      tierLimitedDesc: `Tik skaidrumas — pasakyti žmonėms, kad jie kalba su DI.`,
+      tierLimitedEx: `pvz., klientų aptarnavimo pokalbių robotai`,
+      tierMinName: `Minimali rizika`,
+      tierMinDesc: `Jokių specifinių pareigų pagal aktą.`,
+      tierMinEx: `pvz., šlamšto filtrai, rašybos tikrinimas`,
+      trustTitle: `Kodėl tuo galima pasitikėti`,
+      trust1Title: `Kiekviena eilutė cituoja straipsnį`,
+      trust1Desc: `Ne „gera praktika". Pranešimas ir jo laikas grindžiami 50(1) ir 50(5) straipsniais — formuluotę galite patikrinti patys.`,
+      trust2Title: `Išbandykite, prieš pasitikėdami`,
+      trust2Desc: `Visas įrankis atvertas aukščiau, nemokamas, be paskyros. Pamatykite tikslų rezultatą, prieš ką nors nuspręsdami.`,
+      trust3Title: `Sukurtas vienai užduočiai`,
+      trust3Desc: `Ne keturiasdešimties skirtukų atitikties paketas. Vienas reglamentas, vienas rizikos lygis, vienas aiškus atsakymas.`,
+      founderQuote: `„Transparently sukūriau kaip nepriklausomas, ES bazuotas kūrėjas — ne kaip advokatų kontora. Todėl jis apima tik tai, ką galiu padaryti tiksliai: Article 50 pranešimą. Visa kita nukreipia jus pas kvalifikuotą specialistą."`,
+      founderSig: `— Nikolay, įkūrėjas`,
+      disclaimer: `Šis įrankis yra informacinio pobūdžio ir nėra teisinė konsultacija. Jis skirtas padėti ribotos rizikos DI diegėjams įvykdyti Article 50 skaidrumo pareigas; jis neapima didelės rizikos klasifikavimo, techninės dokumentacijos ar konkrečios valstybės narės reikalavimų. Prieš skelbdami sugeneruotą tekstą, jį peržiūrėkite.`,
+      footerLoc: `Transparently — Varna, Bulgarija`
+    },
+    et: {
+      brandSub: `ELi tehisintellekti akt · Artikli 50 tööriist`,
+      deadlineLabel: `Jõustumise tähtaeg`,
+      heroTitle: `Kas teie vestlusrobot peab ütlema, et ta on robot?`,
+      heroLede: `Teie kliendid väärivad teadmist, kui nad suhtlevad masinaga, mitte inimesega. Varsti nõuab seda ka seadus. Vastake neljale lühikesele küsimusele ja saate dateeritud teatise, mille saate juba täna avaldada.`,
+      statFineCap: `maksab vaikimine`,
+      statTimeCap: `vestlusroboti kontrollimiseks`,
+      statTierCap: `tehisintellekti akti riskitaset — see on kaetud`,
+      formTitle: `Rääkige meile oma assistendist`,
+      formIntro: `Võtab aega umbes nelikümmend sekundit.`,
+      labelBizname: `Ettevõtte nimi`,
+      labelChannels: `Kus ta klientidega suhtleb?`,
+      chipWebsite: `Veebilehe vestlusaken`,
+      chipInstagram: `Instagrami otsesõnum`,
+      chipMessenger: `Facebook Messenger`,
+      chipWhatsapp: `WhatsApp Business`,
+      labelUsecase: `Mida ta tegelikult teeb?`,
+      useGeneralTitle: `Vastab küsimustele, jälgib tellimusi, üldine klienditugi`,
+      useGeneralSub: `Piiratud risk — tavaliselt piisab teatisest`,
+      useDecisionTitle: `Kinnitab või lükkab automaatselt tagasi ka allahindlusi, tagasimakseid või krediiti`,
+      useDecisionSub: `Tõenäoliselt on vaja enamat kui teatist`,
+      useScreeningTitle: `Sõeluvad, hindavad või filtreerivad kandidaate`,
+      useScreeningSub: `Suur risk vastavalt III lisale — ainuüksi sellest tööriistast ei piisa`,
+      labelNoticeLang: `Teatise keel`,
+      labelSignatory: `Vastutav isik (dokumendi jaoks)`,
+      recLabel: `Tehisintellekti läbipaistvuse dokument`,
+      recGenerated: `Loodud`,
+      statusOk: `Piiratud risk — teatis on nõutav`,
+      btnCopy: `Kopeeri teatise tekst`,
+      btnPrint: `Prindi dokument`,
+      toastCopied: `Kopeeritud`,
+      langNotice: `Loodud õigustekst jääb esialgu ainult inglise keelde, kuni iga keel saab oma õigusliku ülevaatuse.`,
+      flagTitle: `See generaator katab ainult Artikkel 50 teatisi piiratud riskiga assistentidele.`,
+      sigSigned: `Allkirjastanud:`,
+      sigRecordId: `Dokumendi ID:`,
+      stepsTitle: `Kuidas see töötab`,
+      step1Title: `Vastake neljale küsimusele`,
+      step1Desc: `Umbes nelikümmend sekundit. Ilma kontota, ilma kaardita.`,
+      step2Title: `Saate dateeritud dokumendi`,
+      step2Desc: `Teatise, mis viitab täpsele artiklile, millel see põhineb, ja kuhu see paigutada.`,
+      step3Title: `Avaldage see juba täna`,
+      step3Desc: `Kleepige see oma vestlusakna esimeseks sõnumiks. Valmis.`,
+      tiersTitle: `Kuhu teie assistent tehisintellekti akti järgi paigutub`,
+      tierBanName: `Lubamatu`,
+      tierBanDesc: `Täielikult keelatud — manipuleeriv või ärakasutav tehisintellekt, sotsiaalne hindamine.`,
+      tierBanEx: `nt varjatud käitumise manipuleerimine`,
+      tierHighName: `Suur risk`,
+      tierHighDesc: `Ranged kohustused: riskijuhtimine, tehniline dokumentatsioon, inimjärelevalve.`,
+      tierHighEx: `nt CV sõelumine, krediidihindamine`,
+      tierLimitedTag: `See tööriist`,
+      tierLimitedName: `Piiratud risk`,
+      tierLimitedDesc: `Ainult läbipaistvus — öelda inimestele, et nad suhtlevad tehisintellektiga.`,
+      tierLimitedEx: `nt klienditoe vestlusrobotid`,
+      tierMinName: `Minimaalne risk`,
+      tierMinDesc: `Akti järgi erikohustused puuduvad.`,
+      tierMinEx: `nt rämpsposti filtrid, õigekirjakontroll`,
+      trustTitle: `Miks seda usaldada`,
+      trust1Title: `Iga rida viitab artiklile`,
+      trust1Desc: `Mitte "hea tava". Teatis ja selle ajastus põhinevad artiklitel 50(1) ja 50(5) — saate sõnastust ise kontrollida.`,
+      trust2Title: `Testige enne usaldamist`,
+      trust2Desc: `Kogu tööriist on ülal avatud, tasuta, ilma kontota. Nägege täpset tulemust enne, kui midagi otsustate.`,
+      trust3Title: `Loodud ühe ülesande jaoks`,
+      trust3Desc: `Mitte neljakümne vahelehega vastavussüsteem. Üks määrus, üks riskitase, üks selge vastus.`,
+      founderQuote: `"Ehitasin Transparently sõltumatu, ELis asuva arendajana — mitte advokaadibürooga. Seepärast katab see ainult ühte asja, mida suudan täpselt teha: Artikkel 50 teatist. Kõige muu puhul suunab see teid pädeva spetsialisti juurde."`,
+      founderSig: `— Nikolay, asutaja`,
+      disclaimer: `See tööriist on informatiivne ega kujuta endast õigusnõustamist. See on loodud aitama piiratud riskiga tehisintellekti kasutuselevõtjaid täitma Artikkel 50 läbipaistvuskohustusi; see ei kata suure riski klassifitseerimist, tehnilist dokumentatsiooni ega liikmesriigipõhiseid nõudeid. Vaadake loodud tekst üle enne avaldamist.`,
+      footerLoc: `Transparently — Varna, Bulgaaria`
+    },
+    hr: {
+      brandSub: `EU Akt o UI-u · Alat za članak 50`,
+      deadlineLabel: `Rok za primjenu`,
+      heroTitle: `Mora li vaš chatbot reći da je bot?`,
+      heroLede: `Vaši klijenti zaslužuju znati kada razgovaraju sa strojem, a ne s osobom. Uskoro će to zahtijevati i zakon. Odgovorite na četiri kratka pitanja i dobit ćete datiranu obavijest koju možete objaviti već danas.`,
+      statFineCap: `cijena šutnje`,
+      statTimeCap: `za provjeru vašeg chatbota`,
+      statTierCap: `razine rizika u Aktu o UI-u — ova je pokrivena`,
+      formTitle: `Recite nam nešto o svom asistentu`,
+      formIntro: `Traje otprilike četrdeset sekundi.`,
+      labelBizname: `Naziv tvrtke`,
+      labelChannels: `Gdje razgovara s klijentima?`,
+      chipWebsite: `Chat widget na web stranici`,
+      chipInstagram: `Instagram DM`,
+      chipMessenger: `Facebook Messenger`,
+      chipWhatsapp: `WhatsApp Business`,
+      labelUsecase: `Što zapravo radi?`,
+      useGeneralTitle: `Odgovara na pitanja, prati narudžbe, opća podrška`,
+      useGeneralSub: `Ograničen rizik — obično je dovoljna obavijest`,
+      useDecisionTitle: `Također automatski odobrava ili odbija popuste, povrate ili kredite`,
+      useDecisionSub: `Vjerojatno treba više od same obavijesti`,
+      useScreeningTitle: `Pregledava, rangira ili filtrira kandidate za posao`,
+      useScreeningSub: `Visok rizik prema Prilogu III — ovaj alat sam po sebi nije dovoljan`,
+      labelNoticeLang: `Jezik obavijesti`,
+      labelSignatory: `Odgovorna osoba (za zapis)`,
+      recLabel: `Zapis o transparentnosti UI-a`,
+      recGenerated: `Generirano`,
+      statusOk: `Ograničen rizik — obavijest je obvezna`,
+      btnCopy: `Kopiraj tekst obavijesti`,
+      btnPrint: `Ispiši zapis`,
+      toastCopied: `Kopirano`,
+      langNotice: `Generirani pravni tekst za sada ostaje na engleskom, dok svaki jezik ne dobije vlastitu pravnu provjeru.`,
+      flagTitle: `Ovaj generator pokriva samo obavijesti prema članku 50 za asistente s ograničenim rizikom.`,
+      sigSigned: `Potpisao/la:`,
+      sigRecordId: `ID zapisa:`,
+      stepsTitle: `Kako funkcionira`,
+      step1Title: `Odgovorite na četiri pitanja`,
+      step1Desc: `Otprilike četrdeset sekundi. Bez računa, bez kartice.`,
+      step2Title: `Dobijte datirani zapis`,
+      step2Desc: `Obavijest koja citira točan članak na kojem se temelji, te gdje je postaviti.`,
+      step3Title: `Objavite je već danas`,
+      step3Desc: `Zalijepite je kao prvu poruku u svom chat widgetu. Gotovo.`,
+      tiersTitle: `Gdje se vaš asistent nalazi prema Aktu o UI-u`,
+      tierBanName: `Neprihvatljivo`,
+      tierBanDesc: `Potpuno zabranjeno — manipulativna ili eksploatativna UI, društveno bodovanje.`,
+      tierBanEx: `npr. prikrivena manipulacija ponašanjem`,
+      tierHighName: `Visok rizik`,
+      tierHighDesc: `Stroge obveze: upravljanje rizikom, tehnička dokumentacija, ljudski nadzor.`,
+      tierHighEx: `npr. probir životopisa, kreditno bodovanje`,
+      tierLimitedTag: `Ovaj alat`,
+      tierLimitedName: `Ograničen rizik`,
+      tierLimitedDesc: `Samo transparentnost — reći ljudima da razgovaraju s UI-om.`,
+      tierLimitedEx: `npr. chatbotovi za korisničku podršku`,
+      tierMinName: `Minimalan rizik`,
+      tierMinDesc: `Nema posebnih obveza prema Aktu.`,
+      tierMinEx: `npr. filtri za neželjenu poštu, provjera pravopisa`,
+      trustTitle: `Zašto vjerovati ovome`,
+      trust1Title: `Svaki redak citira članak`,
+      trust1Desc: `Ne "najbolja praksa". Obavijest i njezino vrijeme temelje se na čl. 50(1) i 50(5) — formulaciju možete sami provjeriti.`,
+      trust2Title: `Testirajte prije nego povjerujete`,
+      trust2Desc: `Cijeli alat otvoren je iznad, besplatan, bez računa. Vidite točan rezultat prije nego što bilo što odlučite.`,
+      trust3Title: `Izgrađen za jedan zadatak`,
+      trust3Desc: `Nije paket za usklađenost sa četrdeset kartica. Jedna uredba, jedna razina rizika, jedan jasan odgovor.`,
+      founderQuote: `"Transparently sam izgradio kao neovisan razvojni programer sa sjedištem u EU-u — ne kao odvjetnički ured. Zato pokriva samo ono što mogu napraviti precizno: obavijest prema članku 50. Za sve ostalo upućuje vas na kvalificiranu osobu."`,
+      founderSig: `— Nikolay, osnivač`,
+      disclaimer: `Ovaj alat je informativan i ne predstavlja pravni savjet. Osmišljen je kako bi pomogao korisnicima UI sustava s ograničenim rizikom da ispune obveze transparentnosti prema članku 50; ne pokriva klasifikaciju visokog rizika, tehničku dokumentaciju niti zahtjeve pojedinih država članica. Prije objave pregledajte generirani tekst.`,
+      footerLoc: `Transparently — Varna, Bugarska`
+    }
+  };
+
+  const supportedLangs = Object.keys(translations);
+
+  function detectLang(){
+    try{
+      const stored = localStorage.getItem('siteLang');
+      if (stored && supportedLangs.includes(stored)) return stored;
+    } catch(e){}
+    const browserLangs = navigator.languages || [navigator.language || 'en'];
+    for (const bl of browserLangs){
+      const code = bl.slice(0,2).toLowerCase();
+      if (supportedLangs.includes(code)) return code;
+    }
+    return 'en';
+  }
+
+  function applyLang(code){
+    const dict = translations[code] || translations.en;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (dict[key]) el.textContent = dict[key];
+    });
+    document.documentElement.lang = code;
+    const switcher = $('siteLang');
+    if (switcher) switcher.value = code;
+    try{ localStorage.setItem('siteLang', code); } catch(e){}
+  }
 
   function initials(name){
     return name.trim().split(/\s+/).map(w => w[0]).join('').toUpperCase().slice(0,3) || 'NB';
@@ -1022,6 +1496,12 @@
       requestAnimationFrame(tick);
     });
   }
+
+  const siteLangSelect = $('siteLang');
+  if (siteLangSelect){
+    siteLangSelect.addEventListener('change', (e) => applyLang(e.target.value));
+  }
+  applyLang(detectLang());
 
   render();
   countUpStats();
