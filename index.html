@@ -137,9 +137,10 @@
   }
   .brand-sub{
     font-size:12.5px;
+    font-weight:600;
     letter-spacing:0.04em;
     text-transform:uppercase;
-    color:var(--brand-deep-ink-soft);
+    color:var(--gold);
   }
   .deadline-pill{
     display:inline-flex;
@@ -154,6 +155,21 @@
     white-space:nowrap;
   }
   .deadline-pill .mono{ font-weight:700; }
+  .deadline-pill .live-dot{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:var(--gold-ink);
+    flex:none;
+    animation:livePulse 1.8s ease-in-out infinite;
+  }
+  @keyframes livePulse{
+    0%, 100%{ opacity:1; transform:scale(1); }
+    50%{ opacity:.35; transform:scale(1.3); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .deadline-pill .live-dot{ animation:none; }
+  }
 
   h1.hero{
     font-size:clamp(30px,4vw,44px);
@@ -563,6 +579,13 @@
     gap:24px;
   }
   @media (max-width:720px){ .step-grid{ grid-template-columns:1fr; } }
+  .step{ animation:fadeUp .6s ease both; }
+  .step:nth-child(1){ animation-delay:.05s; }
+  .step:nth-child(2){ animation-delay:.15s; }
+  .step:nth-child(3){ animation-delay:.25s; }
+  @media (prefers-reduced-motion: reduce){
+    .step{ animation:none; }
+  }
   .step-num{
     font-family:"Newsreader",serif;
     font-size:26px;
@@ -677,14 +700,14 @@
           <span class="brand-sub">EU AI Act · Article 50 toolkit</span>
         </div>
       </div>
-      <div class="deadline-pill">Enforcement deadline <span class="mono">2 Aug 2026</span></div>
+      <div class="deadline-pill"><span class="live-dot"></span>Enforcement deadline <span class="mono">2 Aug 2026</span></div>
     </div>
 
     <h1 class="hero">Does your chatbot need to say it's a bot?</h1>
-    <p class="hero-lede">If an AI assistant talks to your customers, Article 50 of Regulation (EU) 2024/1689 usually requires you to disclose that. Answer four questions and get a dated transparency record you can use today.</p>
+    <p class="hero-lede">Your customers deserve to know when they're talking to a machine, not a person. Soon, the law will insist on it too. Answer four quick questions and walk away with a dated notice you can publish today.</p>
 
     <div class="hero-stats">
-      <div class="stat"><div class="num coral" data-prefix="€" data-target="35" data-suffix="M">€0M</div><div class="cap">max fine for non-compliance</div></div>
+      <div class="stat"><div class="num coral" data-prefix="€" data-target="35" data-suffix="M">€0M</div><div class="cap">the cost of staying quiet about it</div></div>
       <div class="stat"><div class="num mint" data-prefix="" data-target="40" data-suffix=" sec">0 sec</div><div class="cap">to check your chatbot</div></div>
       <div class="stat"><div class="num gold" data-prefix="" data-target="1" data-suffix=" of 4">0 of 4</div><div class="cap">AI Act risk tiers — this covers it</div></div>
     </div>
