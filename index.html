@@ -1,0 +1,957 @@
+<title>Chatbot Disclosure Check</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --bg:#efeee9;
+    --surface:#ffffff;
+    --surface-2:#f7f6f1;
+    --ink:#1e2321;
+    --ink-soft:#566059;
+    --ink-faint:#8b938c;
+    --line:#d9d6c9;
+    --accent:#0f6b5c;
+    --accent-strong:#0b4f44;
+    --accent-soft:#e3efe9;
+    --flag:#b5542a;
+    --flag-soft:#fbeadd;
+    --flag-strong:#8f4017;
+    --risk-ban:#b23a3a;
+    --risk-ban-soft:#f6e4e1;
+    --gold:#f0a23a;
+    --gold-ink:#2a1d08;
+    --brand-deep:#0b4f44;
+    --brand-deep-ink:#f6f4ec;
+    --brand-deep-ink-soft:#bfe3da;
+    --accent-ring:rgba(15,107,92,0.35);
+    --shadow:rgba(30,35,33,0.08);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#121613;
+      --surface:#1a1f1b;
+      --surface-2:#212823;
+      --ink:#edeae2;
+      --ink-soft:#a9b2a9;
+      --ink-faint:#717b73;
+      --line:#323a33;
+      --accent:#49c0a7;
+      --accent-strong:#7fdac6;
+      --accent-soft:#1e332d;
+      --flag:#e29259;
+      --flag-soft:#33241a;
+      --flag-strong:#f3b084;
+      --risk-ban:#e2726b;
+      --risk-ban-soft:#3a2220;
+      --accent-ring:rgba(73,192,167,0.4);
+      --shadow:rgba(0,0,0,0.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#121613;
+    --surface:#1a1f1b;
+    --surface-2:#212823;
+    --ink:#edeae2;
+    --ink-soft:#a9b2a9;
+    --ink-faint:#717b73;
+    --line:#323a33;
+    --accent:#49c0a7;
+    --accent-strong:#7fdac6;
+    --accent-soft:#1e332d;
+    --flag:#e29259;
+    --flag-soft:#33241a;
+    --flag-strong:#f3b084;
+    --risk-ban:#e2726b;
+    --risk-ban-soft:#3a2220;
+    --accent-ring:rgba(73,192,167,0.4);
+    --shadow:rgba(0,0,0,0.35);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{
+    font-family:"Newsreader",Georgia,"Times New Roman",serif;
+    text-wrap:balance;
+  }
+  .mono{
+    font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Consolas,monospace;
+  }
+  .page{
+    max-width:1140px;
+    margin:0 auto;
+    padding:40px 24px 64px;
+  }
+
+  /* ---------- hero band ---------- */
+  .hero-band{
+    background:
+      radial-gradient(circle at 88% 8%, rgba(240,162,58,0.16), transparent 42%),
+      radial-gradient(circle at 6% 95%, rgba(143,227,206,0.12), transparent 48%),
+      var(--brand-deep);
+    border-radius:22px;
+    padding:34px 36px 34px;
+    margin-bottom:40px;
+  }
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:24px;
+    flex-wrap:wrap;
+    margin-bottom:28px;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .brand svg{ width:38px; height:38px; flex:none; }
+  .brand-text{ display:flex; flex-direction:column; gap:3px; }
+  .brand-name{
+    font-family:"Newsreader",serif;
+    font-size:clamp(24px,2.6vw,30px);
+    font-weight:600;
+    letter-spacing:0;
+    line-height:1.05;
+    color:var(--brand-deep-ink);
+  }
+  .brand-sub{
+    font-size:12.5px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    color:var(--brand-deep-ink-soft);
+  }
+  .deadline-pill{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:12.5px;
+    font-weight:700;
+    color:var(--gold-ink);
+    background:var(--gold);
+    border-radius:999px;
+    padding:7px 15px;
+    white-space:nowrap;
+  }
+  .deadline-pill .mono{ font-weight:700; }
+
+  h1.hero{
+    font-size:clamp(30px,4vw,44px);
+    font-weight:500;
+    line-height:1.12;
+    color:var(--brand-deep-ink);
+    margin:16px 0 12px;
+  }
+  .hero-lede{
+    max-width:62ch;
+    color:var(--brand-deep-ink-soft);
+    font-size:16px;
+    line-height:1.55;
+    margin:0 0 26px;
+  }
+  .hero-stats{
+    display:flex;
+    gap:28px;
+    flex-wrap:wrap;
+    padding-top:22px;
+    border-top:1px solid rgba(246,244,236,0.16);
+  }
+  .stat{ min-width:120px; }
+  .stat .num{
+    font-family:"Newsreader",serif;
+    font-size:24px;
+    font-weight:600;
+    line-height:1.1;
+  }
+  .stat .num.gold{ color:var(--gold); }
+  .stat .num.coral{ color:#f2948c; }
+  .stat .num.mint{ color:#8fe3ce; }
+  .stat .cap{
+    font-size:12px;
+    color:var(--brand-deep-ink-soft);
+    margin-top:3px;
+  }
+
+  /* ---------- layout ---------- */
+  .layout{
+    display:grid;
+    grid-template-columns:1.05fr 1fr;
+    gap:40px;
+    align-items:start;
+  }
+  @media (max-width:880px){
+    .layout{ grid-template-columns:1fr; }
+  }
+
+  .card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:14px;
+    box-shadow:0 1px 2px var(--shadow);
+  }
+
+  /* ---------- form ---------- */
+  .form-card{ padding:30px 30px 34px; }
+  .form-card h2{
+    font-size:19px;
+    font-weight:500;
+    margin:0 0 4px;
+  }
+  .form-card > p{
+    font-size:13.5px;
+    color:var(--ink-soft);
+    margin:0 0 26px;
+  }
+  .field{
+    margin-bottom:22px;
+  }
+  .field:last-child{ margin-bottom:0; }
+  .field label.flabel{
+    display:block;
+    font-size:11.5px;
+    font-weight:600;
+    letter-spacing:0.07em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    margin-bottom:9px;
+  }
+  .text-input, .select-input{
+    width:100%;
+    padding:10px 12px;
+    font-size:14.5px;
+    font-family:inherit;
+    color:var(--ink);
+    background:var(--surface-2);
+    border:1px solid var(--line);
+    border-radius:8px;
+    outline:none;
+    transition:border-color .15s ease;
+  }
+  .text-input:focus, .select-input:focus{
+    border-color:var(--accent);
+    box-shadow:0 0 0 3px var(--accent-soft);
+  }
+  .check-grid{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .chip{
+    position:relative;
+  }
+  .chip input{
+    position:absolute;
+    opacity:0;
+    inset:0;
+    cursor:pointer;
+  }
+  .chip span{
+    display:inline-flex;
+    align-items:center;
+    padding:7px 13px;
+    font-size:13px;
+    border:1px solid var(--line);
+    border-radius:999px;
+    color:var(--ink-soft);
+    background:var(--surface-2);
+    transition:all .15s ease;
+  }
+  .chip input:checked + span{
+    border-color:var(--accent);
+    color:#fff;
+    background:var(--accent);
+    font-weight:600;
+    box-shadow:0 2px 8px var(--shadow);
+  }
+  .chip input:focus-visible + span{
+    outline:2px solid var(--accent);
+    outline-offset:2px;
+  }
+  .radio-list{
+    display:flex;
+    flex-direction:column;
+    gap:9px;
+  }
+  .radio-row{
+    position:relative;
+    display:flex;
+    align-items:flex-start;
+    gap:11px;
+    padding:11px 13px;
+    border:1px solid var(--line);
+    border-radius:9px;
+    background:var(--surface-2);
+    cursor:pointer;
+    transition:border-color .15s ease, background .15s ease;
+  }
+  .radio-row:has(input:checked){
+    border-color:var(--accent);
+    border-width:2px;
+    background:var(--accent-soft);
+  }
+  .radio-row input{ margin-top:3px; accent-color:var(--accent); flex:none; }
+  .radio-row .rt{ font-size:13.8px; line-height:1.4; }
+  .radio-row .rt b{ font-weight:600; }
+  .radio-row .rt small{ display:block; color:var(--ink-soft); font-size:12px; margin-top:2px; }
+  select.select-input option[disabled]{ color:var(--ink-faint); }
+
+  /* ---------- record panel ---------- */
+  .record-card{
+    padding:28px 28px 26px;
+    position:relative;
+    overflow:hidden;
+    border-left:4px solid var(--accent);
+    box-shadow:0 4px 18px var(--shadow);
+  }
+  .record-card.pulse{ animation:recordUpdate 550ms ease-out; }
+  @keyframes recordUpdate{
+    0%{ box-shadow:0 0 0 0 var(--accent-ring), 0 4px 18px var(--shadow); }
+    55%{ box-shadow:0 0 0 8px rgba(0,0,0,0), 0 4px 18px var(--shadow); }
+    100%{ box-shadow:0 4px 18px var(--shadow); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .record-card.pulse{ animation:none; }
+  }
+  .seal{
+    position:absolute;
+    top:-22px;
+    right:-22px;
+    width:92px;
+    height:92px;
+    opacity:0.07;
+  }
+  .rec-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .rec-label{
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:0.09em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    margin-bottom:5px;
+  }
+  .rec-ref{ font-size:13.5px; color:var(--ink-soft); }
+  .rec-date{ font-size:12.5px; color:var(--ink-faint); text-align:right; }
+  .status-pill{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:12.5px;
+    font-weight:700;
+    padding:8px 15px;
+    border-radius:999px;
+    margin-bottom:20px;
+    box-shadow:0 2px 8px var(--shadow);
+  }
+  .status-pill.ok{ background:var(--accent); color:#fff; }
+  .status-pill.flag{ background:var(--flag); color:#fff; }
+  .dot{ width:7px; height:7px; border-radius:50%; background:#fff; }
+  .status-pill.pulse{ animation:statusPop 420ms ease; }
+  @keyframes statusPop{
+    0%{ transform:scale(0.9); }
+    55%{ transform:scale(1.07); }
+    100%{ transform:scale(1); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .status-pill.pulse{ animation:none; }
+  }
+
+  .notice-box{
+    border-left:3px solid var(--accent);
+    background:var(--surface-2);
+    padding:16px 18px;
+    border-radius:0 8px 8px 0;
+    margin-bottom:16px;
+  }
+  .notice-box p{
+    font-size:15px;
+    line-height:1.55;
+    font-style:italic;
+    margin:0;
+  }
+  .legal-basis{
+    font-size:11.5px;
+    color:var(--ink-faint);
+    margin:12px 0 18px;
+  }
+  .placement-tip{
+    font-size:13px;
+    color:var(--ink-soft);
+    line-height:1.5;
+    margin:0 0 20px;
+  }
+  .placement-tip b{ color:var(--ink); font-weight:600; }
+
+  .flag-box{
+    background:var(--flag-soft);
+    border:1px solid var(--flag);
+    border-radius:9px;
+    padding:16px 18px;
+    margin-bottom:20px;
+  }
+  .flag-box p{
+    font-size:13.8px;
+    line-height:1.55;
+    color:var(--flag-strong);
+    margin:0;
+  }
+  .flag-box p + p{ margin-top:8px; }
+
+  .rec-actions{
+    display:flex;
+    gap:10px;
+    margin-bottom:22px;
+  }
+  .btn{
+    font-family:inherit;
+    font-size:13px;
+    font-weight:600;
+    padding:9px 16px;
+    border-radius:8px;
+    border:1px solid var(--line);
+    background:var(--surface-2);
+    color:var(--ink);
+    cursor:pointer;
+    transition:border-color .15s ease, background .15s ease;
+  }
+  .btn.primary{
+    background:var(--accent);
+    border-color:var(--accent);
+    color:#fff;
+  }
+  .btn.primary:hover{ background:var(--accent-strong); border-color:var(--accent-strong); }
+  .btn:not(.primary):hover{ border-color:var(--accent); }
+  .btn[disabled]{ opacity:0.5; cursor:not-allowed; }
+  .toast{
+    font-size:12px;
+    color:var(--accent-strong);
+    align-self:center;
+    opacity:0;
+    transition:opacity .2s ease;
+  }
+  .toast.show{ opacity:1; }
+
+  .sig{
+    border-top:1px solid var(--line);
+    padding-top:14px;
+    font-size:12px;
+    color:var(--ink-faint);
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+  }
+  .sig b{ color:var(--ink-soft); font-weight:500; }
+
+  /* ---------- tier strip ---------- */
+  .tiers{
+    margin-top:52px;
+  }
+  .tiers h3{
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    margin:0 0 16px;
+  }
+  .tier-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+  }
+  @media (max-width:880px){ .tier-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:480px){ .tier-grid{ grid-template-columns:1fr; } }
+  .tier{
+    border:2px solid var(--line);
+    border-radius:11px;
+    padding:16px 16px 18px;
+    background:var(--surface);
+    position:relative;
+  }
+  .tier-name{
+    font-family:"Newsreader",serif;
+    font-size:16px;
+    font-weight:600;
+    margin:0 0 6px;
+  }
+  .tier p{
+    font-size:12.5px;
+    line-height:1.5;
+    margin:0 0 8px;
+  }
+  .tier .ex{
+    font-size:11.5px;
+  }
+  .tier-ban{ border-color:var(--risk-ban); background:var(--risk-ban-soft); }
+  .tier-ban .tier-name{ color:var(--risk-ban); }
+  .tier-ban p, .tier-ban .ex{ color:var(--risk-ban); opacity:0.85; }
+
+  .tier-high{ border-color:var(--flag); background:var(--flag-soft); }
+  .tier-high .tier-name{ color:var(--flag-strong); }
+  .tier-high p, .tier-high .ex{ color:var(--flag-strong); opacity:0.85; }
+
+  .tier-min{ background:var(--surface-2); }
+  .tier-min .tier-name{ color:var(--ink-soft); }
+  .tier-min p, .tier-min .ex{ color:var(--ink-faint); }
+
+  .tier-limited{
+    border-color:var(--accent);
+    background:var(--accent);
+    box-shadow:0 6px 20px var(--shadow);
+  }
+  .tier-limited .tier-name{ color:#fff; }
+  .tier-limited p{ color:var(--brand-deep-ink-soft); }
+  .tier-limited .ex{ color:rgba(255,255,255,0.75); }
+  .tier-tag{
+    position:absolute;
+    top:14px;
+    right:14px;
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--gold-ink);
+    background:var(--gold);
+    padding:3px 9px;
+    border-radius:999px;
+  }
+
+  /* ---------- how it works ---------- */
+  .steps{ margin-top:52px; }
+  .steps h3, .trust h3{
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    margin:0 0 16px;
+  }
+  .step-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+  }
+  @media (max-width:720px){ .step-grid{ grid-template-columns:1fr; } }
+  .step-num{
+    font-family:"Newsreader",serif;
+    font-size:26px;
+    font-weight:600;
+    color:var(--accent);
+    margin-bottom:6px;
+  }
+  .step-name{
+    font-size:15.5px;
+    font-weight:600;
+    margin-bottom:5px;
+  }
+  .step p{
+    font-size:13px;
+    color:var(--ink-soft);
+    line-height:1.5;
+    margin:0;
+  }
+
+  /* ---------- trust ---------- */
+  .trust{ margin-top:52px; }
+  .trust-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    margin-bottom:26px;
+  }
+  @media (max-width:720px){ .trust-grid{ grid-template-columns:1fr; } }
+  .trust-item{
+    border:1px solid var(--line);
+    border-radius:11px;
+    padding:18px 18px 20px;
+    background:var(--surface);
+  }
+  .trust-name{
+    font-family:"Newsreader",serif;
+    font-size:15.5px;
+    font-weight:600;
+    margin-bottom:7px;
+  }
+  .trust-item p{
+    font-size:13px;
+    color:var(--ink-soft);
+    line-height:1.5;
+    margin:0;
+  }
+  .founder-note{
+    border-left:3px solid var(--gold);
+    background:var(--surface-2);
+    padding:18px 22px;
+    border-radius:0 10px 10px 0;
+  }
+  .founder-note p{
+    font-family:"Newsreader",serif;
+    font-style:italic;
+    font-size:15.5px;
+    line-height:1.55;
+    margin:0 0 10px;
+  }
+  .founder-sig{
+    font-size:12.5px;
+    color:var(--ink-faint);
+  }
+
+  .site-foot{
+    margin-top:28px;
+    padding-top:18px;
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+    font-size:12px;
+    color:var(--ink-faint);
+  }
+  .site-foot a{ color:var(--accent-strong); text-decoration:none; }
+  .site-foot a:hover{ text-decoration:underline; }
+
+  .disclaimer{
+    margin-top:44px;
+    padding-top:18px;
+    border-top:1px solid var(--line);
+    font-size:12px;
+    color:var(--ink-faint);
+    line-height:1.6;
+    max-width:72ch;
+  }
+
+  @media print{
+    .form-card, .hero-band, .tiers, .steps, .trust, .site-foot, .disclaimer, .rec-actions{ display:none !important; }
+    body{ background:#fff; }
+    .layout{ grid-template-columns:1fr; }
+    .record-card{ border:none; box-shadow:none; }
+  }
+</style>
+
+<div class="page">
+  <header class="hero-band">
+    <div class="topbar">
+      <div class="brand">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L20 5.5V11C20 16.5 16.5 20.5 12 22C7.5 20.5 4 16.5 4 11V5.5L12 2Z" stroke="#f6f4ec" stroke-width="1.6"/>
+          <path d="M8.5 12L11 14.5L15.5 9.5" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="brand-text">
+          <span class="brand-name">Disclosure Check</span>
+          <span class="brand-sub">EU AI Act · Article 50 toolkit</span>
+        </div>
+      </div>
+      <div class="deadline-pill">Enforcement deadline <span class="mono">2 Aug 2026</span></div>
+    </div>
+
+    <h1 class="hero">Does your chatbot need to say it's a bot?</h1>
+    <p class="hero-lede">If an AI assistant talks to your customers, Article 50 of Regulation (EU) 2024/1689 usually requires you to disclose that. Answer four questions and get a dated transparency record you can use today.</p>
+
+    <div class="hero-stats">
+      <div class="stat"><div class="num coral">€35M</div><div class="cap">max fine for non-compliance</div></div>
+      <div class="stat"><div class="num mint">90 sec</div><div class="cap">to check your chatbot</div></div>
+      <div class="stat"><div class="num gold">1 of 4</div><div class="cap">AI Act risk tiers — this covers it</div></div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <section class="card form-card" aria-label="Questionnaire">
+      <h2>Tell us about your assistant</h2>
+      <p>Takes about ninety seconds.</p>
+
+      <div class="field">
+        <label class="flabel" for="bizname">Business name</label>
+        <input class="text-input" id="bizname" type="text" value="Nordic Botanica" maxlength="60">
+      </div>
+
+      <div class="field">
+        <label class="flabel">Where does it talk to customers?</label>
+        <div class="check-grid" id="channels">
+          <label class="chip"><input type="checkbox" value="Website chat widget" checked><span>Website chat widget</span></label>
+          <label class="chip"><input type="checkbox" value="Instagram DM" checked><span>Instagram DM</span></label>
+          <label class="chip"><input type="checkbox" value="Facebook Messenger"><span>Facebook Messenger</span></label>
+          <label class="chip"><input type="checkbox" value="WhatsApp Business"><span>WhatsApp Business</span></label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="flabel">What does it actually do?</label>
+        <div class="radio-list" id="usecase">
+          <label class="radio-row">
+            <input type="radio" name="use" value="general" checked>
+            <span class="rt"><b>Answers questions, tracks orders, general support</b><small>Limited-risk — disclosure is usually all that's required</small></span>
+          </label>
+          <label class="radio-row">
+            <input type="radio" name="use" value="decision">
+            <span class="rt"><b>Also approves or denies discounts, refunds, or credit automatically</b><small>Likely needs more than a disclosure notice</small></span>
+          </label>
+          <label class="radio-row">
+            <input type="radio" name="use" value="screening">
+            <span class="rt"><b>Screens, ranks, or filters job applicants</b><small>High-risk under Annex III — this tool isn't enough on its own</small></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="flabel" for="lang">Site language for the notice</label>
+        <select class="select-input" id="lang">
+          <option value="en">English — available</option>
+          <option value="lt" disabled>Lithuanian — in full version</option>
+          <option value="et" disabled>Estonian — in full version</option>
+          <option value="hr" disabled>Croatian — in full version</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label class="flabel" for="signatory">Responsible person (for the record)</label>
+        <input class="text-input" id="signatory" type="text" value="Eglė Jankauskaitė, Operations Lead" maxlength="60">
+      </div>
+    </section>
+
+    <aside class="card record-card" id="recordCard" aria-label="Generated transparency record">
+      <svg class="seal" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L20 5.5V11C20 16.5 16.5 20.5 12 22C7.5 20.5 4 16.5 4 11V5.5L12 2Z" stroke="var(--ink)" stroke-width="1"/>
+      </svg>
+      <div class="rec-top">
+        <div>
+          <div class="rec-label">AI Transparency Record</div>
+          <div class="rec-ref mono" id="recRef">ATR-20261014-NB</div>
+        </div>
+        <div class="rec-date mono" id="recDate">Generated<br>14 Oct 2026</div>
+      </div>
+
+      <div class="status-pill ok" id="statusPill">
+        <span class="dot"></span>
+        <span id="statusText">Limited risk — disclosure required</span>
+      </div>
+
+      <div id="okContent">
+        <div class="notice-box">
+          <p id="noticeText">"You are interacting with an AI system, not a human. Nordic Botanica uses this AI assistant to answer questions and track orders. You may ask to speak with a person on our team at any time."</p>
+        </div>
+        <div class="legal-basis mono">Art. 50(1): natural persons must be informed they are interacting with an AI system. Art. 50(5): in a clear and distinguishable manner, at the latest at the time of first interaction.</div>
+        <p class="placement-tip" id="placementTip">Show this as the <b>first message</b>, before any other reply — that satisfies "at the latest at the time of first interaction." Pin it in your Website chat widget, and pin it to your Instagram DM welcome note.</p>
+        <div class="rec-actions">
+          <button class="btn primary" id="copyBtn">Copy notice text</button>
+          <button class="btn" id="printBtn">Print record</button>
+          <span class="toast" id="toast">Copied</span>
+        </div>
+      </div>
+
+      <div id="flagContent" style="display:none;">
+        <div class="flag-box">
+          <p><b>This generator only covers Article 50 disclosure notices for limited-risk assistants.</b></p>
+          <p id="flagReason">Automated decisions about discounts, refunds, or credit can trigger additional obligations under Art. 6 and Annex III. Get a full risk assessment before relying on a disclosure notice alone.</p>
+        </div>
+        <div class="rec-actions">
+          <button class="btn" id="printBtnFlag">Print record</button>
+        </div>
+      </div>
+
+      <div class="sig">
+        <span>Signed: <b id="sigName">Eglė Jankauskaitė, Operations Lead</b></span>
+        <span>Record id: <b id="sigRef" class="mono">ATR-20261014-NB</b></span>
+      </div>
+    </aside>
+  </div>
+
+  <section class="steps">
+    <h3>How it works</h3>
+    <div class="step-grid">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-name">Answer four questions</div>
+        <p>About ninety seconds. No account, no card.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-name">Get a dated record</div>
+        <p>A notice that quotes the exact article it's based on, plus where to place it.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-name">Publish it today</div>
+        <p>Copy it into your chat widget's first message. Done.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="tiers">
+    <h3>Where your assistant sits under the AI Act</h3>
+    <div class="tier-grid">
+      <div class="tier tier-ban">
+        <div class="tier-name">Unacceptable</div>
+        <p>Banned outright — manipulative or exploitative AI, social scoring.</p>
+        <div class="ex">e.g. covert behavioural manipulation</div>
+      </div>
+      <div class="tier tier-high">
+        <div class="tier-name">High-risk</div>
+        <p>Strict obligations: risk management, technical documentation, human oversight.</p>
+        <div class="ex">e.g. CV screening, credit scoring</div>
+      </div>
+      <div class="tier tier-limited" id="limitedTier">
+        <span class="tier-tag">This tool</span>
+        <div class="tier-name">Limited risk</div>
+        <p>Transparency only — tell people they're talking to AI.</p>
+        <div class="ex">e.g. customer-service chatbots</div>
+      </div>
+      <div class="tier tier-min">
+        <div class="tier-name">Minimal risk</div>
+        <p>No specific obligations under the Act.</p>
+        <div class="ex">e.g. spam filters, spell-check</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust">
+    <h3>Why trust this</h3>
+    <div class="trust-grid">
+      <div class="trust-item">
+        <div class="trust-name">Every line cites an article</div>
+        <p>Not "best practice." The notice and its timing trace to Art. 50(1) and 50(5) — you can check the wording yourself.</p>
+      </div>
+      <div class="trust-item">
+        <div class="trust-name">Test it before you trust it</div>
+        <p>The full tool is open above, free, no account. See the exact output before you decide anything.</p>
+      </div>
+      <div class="trust-item">
+        <div class="trust-name">Built for one job</div>
+        <p>Not a forty-tab compliance suite. One regulation, one risk tier, one clear answer.</p>
+      </div>
+    </div>
+    <div class="founder-note">
+      <p>"I built Transparently as an independent, EU-based developer — not a law firm. That's also why it only covers the one thing I can get precisely right: the Article 50 disclosure notice. Everything else, it tells you to go check with someone qualified."</p>
+      <div class="founder-sig">— Nikolay, founder</div>
+    </div>
+  </section>
+
+  <p class="disclaimer">This tool is informational and does not constitute legal advice. It is designed to help limited-risk AI deployers meet Article 50 transparency obligations; it does not cover high-risk classification, technical documentation, or Member State-specific guidance. Review generated text before publishing it.</p>
+
+  <footer class="site-foot">
+    <span>Transparently — Varna, Bulgaria</span>
+    <a href="mailto:hello@transparently.eu">hello@transparently.eu</a>
+  </footer>
+</div>
+
+<script>
+  const $ = (id) => document.getElementById(id);
+  const bizname = $('bizname'), signatory = $('signatory'), lang = $('lang');
+  const usecaseRadios = document.querySelectorAll('input[name="use"]');
+  const channelBoxes = document.querySelectorAll('#channels input[type="checkbox"]');
+
+  function initials(name){
+    return name.trim().split(/\s+/).map(w => w[0]).join('').toUpperCase().slice(0,3) || 'NB';
+  }
+
+  function todayParts(){
+    const d = new Date();
+    const pad = (n) => String(n).padStart(2,'0');
+    const compact = `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}`;
+    const human = d.toLocaleDateString('en-GB', { day:'2-digit', month:'short', year:'numeric' });
+    return { compact, human };
+  }
+
+  function selectedChannels(){
+    return Array.from(channelBoxes).filter(c => c.checked).map(c => c.value);
+  }
+
+  function placementTipFor(channels){
+    if (channels.length === 0){
+      return 'Select where your assistant talks to customers to get a placement tip.';
+    }
+    const first = channels[0];
+    const rest = channels.slice(1);
+    let text = `Show this as the first message, before any other reply, in your ${first}`;
+    if (rest.length){
+      text += `, and pin it to your ${rest.join(', ')}`;
+    }
+    text += '. That timing is what Art. 50(5) requires.';
+    return text;
+  }
+
+  function noticeFor(name){
+    return `You are interacting with an AI system, not a human. ${name} uses this AI assistant to answer questions and track orders. You may ask to speak with a person on our team at any time.`;
+  }
+
+  function render(){
+    const name = bizname.value.trim() || 'Your business';
+    const use = document.querySelector('input[name="use"]:checked').value;
+    const channels = selectedChannels();
+    const { compact, human } = todayParts();
+    const ref = `ATR-${compact}-${initials(name)}`;
+
+    $('recRef').textContent = ref;
+    $('recDate').innerHTML = `Generated<br>${human}`;
+    $('sigName').textContent = signatory.value.trim() || '—';
+    $('sigRef').textContent = ref;
+
+    const pill = $('statusPill'), statusText = $('statusText');
+    const okContent = $('okContent'), flagContent = $('flagContent');
+
+    if (use === 'general'){
+      pill.classList.remove('flag'); pill.classList.add('ok');
+      statusText.textContent = 'Limited risk — disclosure required';
+      okContent.style.display = '';
+      flagContent.style.display = 'none';
+      $('noticeText').textContent = `"${noticeFor(name)}"`;
+      $('placementTip').textContent = placementTipFor(channels);
+    } else {
+      pill.classList.remove('ok'); pill.classList.add('flag');
+      statusText.textContent = 'Needs review — possible high-risk use';
+      okContent.style.display = 'none';
+      flagContent.style.display = '';
+      $('flagReason').textContent = use === 'screening'
+        ? 'Filtering or ranking job applicants is listed as high-risk under Annex III. That means technical documentation and human oversight on top of any disclosure notice.'
+        : 'Automated decisions about discounts, refunds, or credit can trigger additional obligations under Art. 6 and Annex III. Get a full risk assessment before relying on a disclosure notice alone.';
+    }
+  }
+
+  function pulse(){
+    const card = $('recordCard');
+    const pill = $('statusPill');
+    card.classList.remove('pulse');
+    pill.classList.remove('pulse');
+    requestAnimationFrame(() => {
+      card.classList.add('pulse');
+      pill.classList.add('pulse');
+    });
+  }
+
+  [bizname, signatory].forEach(el => {
+    el.addEventListener('input', render);
+    el.addEventListener('change', pulse);
+  });
+  lang.addEventListener('change', () => { render(); pulse(); });
+  usecaseRadios.forEach(el => el.addEventListener('change', () => { render(); pulse(); }));
+  channelBoxes.forEach(el => el.addEventListener('change', () => { render(); pulse(); }));
+
+  $('copyBtn').addEventListener('click', async () => {
+    const text = $('noticeText').textContent.replace(/^"|"$/g, '');
+    const toast = $('toast');
+    try {
+      await navigator.clipboard.writeText(text);
+      toast.textContent = 'Copied';
+    } catch(e) {
+      toast.textContent = 'Select the text above to copy';
+    }
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 1800);
+  });
+
+  $('printBtn').addEventListener('click', () => window.print());
+  $('printBtnFlag').addEventListener('click', () => window.print());
+
+  render();
+</script>
