@@ -216,6 +216,20 @@
     line-height:1.55;
     margin:0 0 26px;
   }
+  .what-section{
+    margin:24px 0 40px;
+    padding:16px 20px;
+    border-left:3px solid var(--accent);
+    background:var(--surface-2);
+    border-radius:0 10px 10px 0;
+  }
+  .what-text{
+    max-width:70ch;
+    font-size:14px;
+    line-height:1.6;
+    color:var(--ink-soft);
+    margin:0;
+  }
   .hero-stats{
     display:flex;
     gap:28px;
@@ -774,6 +788,10 @@
     </div>
   </header>
 
+  <section class="what-section">
+    <p class="what-text" data-i18n="whatText">Transparently is a free, independent tool — not a law firm, not a sales pitch. It checks whether your AI assistant needs an EU-mandated disclosure notice under Article 50, and generates one on the spot if it does. Every line is grounded in the regulation's actual wording, not a guess at "best practice."</p>
+  </section>
+
   <div class="layout">
     <section class="card form-card" aria-label="Questionnaire">
       <h2 data-i18n="formTitle">Tell us about your assistant</h2>
@@ -1030,7 +1048,8 @@
       founderQuote: `"I built Transparently as an independent, EU-based developer — not a law firm. That's also why it only covers the one thing I can get precisely right: the Article 50 disclosure notice. Everything else, it tells you to go check with someone qualified."`,
       founderSig: `— Nikolay, founder`,
       disclaimer: `This tool is informational and does not constitute legal advice. It is designed to help limited-risk AI deployers meet Article 50 transparency obligations; it does not cover high-risk classification, technical documentation, or Member State-specific guidance. Review generated text before publishing it.`,
-      footerLoc: `Transparently — Varna, Bulgaria`
+      footerLoc: `Transparently — Varna, Bulgaria`,
+      whatText: `Transparently is a free, independent tool — not a law firm, not a sales pitch. It checks whether your AI assistant needs an EU-mandated disclosure notice under Article 50, and generates one on the spot if it does. Every line is grounded in the regulation's actual wording, not a guess at "best practice."`
     },
     de: {
       brandSub: `EU-KI-Verordnung · Artikel-50-Tool`,
@@ -1098,7 +1117,8 @@
       founderQuote: `„Ich habe Transparently als unabhängiger Entwickler in der EU gebaut — keine Anwaltskanzlei. Deshalb deckt es nur das eine ab, was ich wirklich präzise beherrsche: den Artikel-50-Hinweis. Für alles andere verweist es Sie an jemanden Qualifizierten."`,
       founderSig: `— Nikolay, Gründer`,
       disclaimer: `Dieses Tool dient nur der Information und stellt keine Rechtsberatung dar. Es soll Betreibern von KI-Systemen mit geringem Risiko helfen, die Transparenzpflichten nach Artikel 50 zu erfüllen; es deckt keine Hochrisiko-Einstufung, technische Dokumentation oder länderspezifische Vorgaben ab. Prüfen Sie den erzeugten Text vor der Veröffentlichung.`,
-      footerLoc: `Transparently — Varna, Bulgarien`
+      footerLoc: `Transparently — Varna, Bulgarien`,
+      whatText: `Transparently ist ein kostenloses, unabhängiges Tool — keine Anwaltskanzlei, kein Verkaufsgespräch. Es prüft, ob Ihr KI-Assistent einen EU-vorgeschriebenen Hinweis nach Artikel 50 benötigt, und erstellt diesen bei Bedarf sofort. Jede Zeile basiert auf dem tatsächlichen Wortlaut der Verordnung, nicht auf einer Vermutung über „Best Practice".`
     },
     fr: {
       brandSub: `Règlement IA UE · Outil Article 50`,
@@ -1166,7 +1186,8 @@
       founderQuote: `« J'ai créé Transparently en tant que développeur indépendant basé dans l'UE — pas un cabinet d'avocats. C'est aussi pourquoi il ne couvre que la seule chose que je peux maîtriser précisément : l'avis de l'article 50. Pour tout le reste, il vous renvoie vers quelqu'un de qualifié. »`,
       founderSig: `— Nikolay, fondateur`,
       disclaimer: `Cet outil est informatif et ne constitue pas un conseil juridique. Il est conçu pour aider les déployeurs de systèmes d'IA à risque limité à respecter les obligations de transparence de l'article 50 ; il ne couvre pas la classification à haut risque, la documentation technique ni les règles propres à chaque État membre. Relisez le texte généré avant de le publier.`,
-      footerLoc: `Transparently — Varna, Bulgarie`
+      footerLoc: `Transparently — Varna, Bulgarie`,
+      whatText: `Transparently est un outil gratuit et indépendant — pas un cabinet d'avocats, pas un argumentaire de vente. Il vérifie si votre assistant IA a besoin d'un avis obligatoire selon l'article 50 de l'UE, et en génère un immédiatement si c'est le cas. Chaque ligne repose sur le texte réel du règlement, pas sur une supposition de « bonnes pratiques ».`
     },
     lt: {
       brandSub: `ES DI aktas · 50 straipsnio įrankis`,
@@ -1234,7 +1255,8 @@
       founderQuote: `„Transparently sukūriau kaip nepriklausomas, ES bazuotas kūrėjas — ne kaip advokatų kontora. Todėl jis apima tik tai, ką galiu padaryti tiksliai: Article 50 pranešimą. Visa kita nukreipia jus pas kvalifikuotą specialistą."`,
       founderSig: `— Nikolay, įkūrėjas`,
       disclaimer: `Šis įrankis yra informacinio pobūdžio ir nėra teisinė konsultacija. Jis skirtas padėti ribotos rizikos DI diegėjams įvykdyti Article 50 skaidrumo pareigas; jis neapima didelės rizikos klasifikavimo, techninės dokumentacijos ar konkrečios valstybės narės reikalavimų. Prieš skelbdami sugeneruotą tekstą, jį peržiūrėkite.`,
-      footerLoc: `Transparently — Varna, Bulgarija`
+      footerLoc: `Transparently — Varna, Bulgarija`,
+      whatText: `„Transparently" yra nemokamas, nepriklausomas įrankis — ne advokatų kontora, ne pardavimo pasiūlymas. Jis patikrina, ar jūsų DI asistentui reikalingas ES privalomas pranešimas pagal Article 50, ir, jei taip, iškart jį sugeneruoja. Kiekviena eilutė grindžiama tikru reglamento tekstu, o ne spėjimu apie „gerą praktiką".`
     },
     et: {
       brandSub: `ELi tehisintellekti akt · Artikli 50 tööriist`,
@@ -1302,7 +1324,8 @@
       founderQuote: `"Ehitasin Transparently sõltumatu, ELis asuva arendajana — mitte advokaadibürooga. Seepärast katab see ainult ühte asja, mida suudan täpselt teha: Artikkel 50 teatist. Kõige muu puhul suunab see teid pädeva spetsialisti juurde."`,
       founderSig: `— Nikolay, asutaja`,
       disclaimer: `See tööriist on informatiivne ega kujuta endast õigusnõustamist. See on loodud aitama piiratud riskiga tehisintellekti kasutuselevõtjaid täitma Artikkel 50 läbipaistvuskohustusi; see ei kata suure riski klassifitseerimist, tehnilist dokumentatsiooni ega liikmesriigipõhiseid nõudeid. Vaadake loodud tekst üle enne avaldamist.`,
-      footerLoc: `Transparently — Varna, Bulgaaria`
+      footerLoc: `Transparently — Varna, Bulgaaria`,
+      whatText: `Transparently on tasuta, sõltumatu tööriist — mitte advokaadibüroo, mitte müügipakkumine. See kontrollib, kas teie tehisintellekti assistent vajab ELi kohustuslikku teatist vastavalt Artikkel 50-le, ja genereerib selle vajadusel kohe. Iga rida põhineb määruse tegelikul sõnastusel, mitte oletusel "heast tavast".`
     },
     hr: {
       brandSub: `EU Akt o UI-u · Alat za članak 50`,
@@ -1370,7 +1393,8 @@
       founderQuote: `"Transparently sam izgradio kao neovisan razvojni programer sa sjedištem u EU-u — ne kao odvjetnički ured. Zato pokriva samo ono što mogu napraviti precizno: obavijest prema članku 50. Za sve ostalo upućuje vas na kvalificiranu osobu."`,
       founderSig: `— Nikolay, osnivač`,
       disclaimer: `Ovaj alat je informativan i ne predstavlja pravni savjet. Osmišljen je kako bi pomogao korisnicima UI sustava s ograničenim rizikom da ispune obveze transparentnosti prema članku 50; ne pokriva klasifikaciju visokog rizika, tehničku dokumentaciju niti zahtjeve pojedinih država članica. Prije objave pregledajte generirani tekst.`,
-      footerLoc: `Transparently — Varna, Bugarska`
+      footerLoc: `Transparently — Varna, Bugarska`,
+      whatText: `Transparently je besplatan, neovisan alat — nije odvjetnički ured, nije prodajna ponuda. Provjerava treba li vašem UI asistentu EU obvezna obavijest prema članku 50, i odmah je generira ako treba. Svaki redak temelji se na stvarnom tekstu uredbe, a ne na pretpostavci o "dobroj praksi".`
     },
     bg: {
       brandSub: `Регламент на ЕС за ИИ · Инструмент по член 50`,
@@ -1438,7 +1462,8 @@
       founderQuote: `"Изградих Transparently като независим разработчик, базиран в ЕС — не като адвокатска кантора. Затова покрива само едно нещо, което мога да направя точно: известието по член 50. За всичко останало те насочва към квалифициран специалист."`,
       founderSig: `— Николай, основател`,
       disclaimer: `Този инструмент е информативен и не представлява правен съвет. Предназначен е да помогне на внедрителите на ИИ системи с ограничен риск да изпълнят задълженията за прозрачност по член 50; не покрива класификация на висок риск, техническа документация или специфични изисквания на отделни държави членки. Прегледай генерирания текст, преди да го публикуваш.`,
-      footerLoc: `Transparently — Варна, България`
+      footerLoc: `Transparently — Варна, България`,
+      whatText: `Transparently е безплатен, независим инструмент — не адвокатска кантора, не търговско предложение. Проверява дали твоят AI асистент се нуждае от задължително по закона известие по член 50, и го генерира веднага, ако е нужно. Всеки ред се основава на реалния текст на регламента, не на предположение за "добра практика".`
     }
   };
 
