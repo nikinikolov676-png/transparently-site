@@ -317,6 +317,12 @@
     flex-wrap:wrap;
     gap:8px;
   }
+  .other-reveal{
+    margin-top:10px;
+    width:100%;
+    font-family:inherit;
+    resize:vertical;
+  }
   .chip{
     position:relative;
   }
@@ -809,7 +815,9 @@
           <label class="chip"><input type="checkbox" value="Instagram DM" checked><span data-i18n="chipInstagram">Instagram DM</span></label>
           <label class="chip"><input type="checkbox" value="Facebook Messenger"><span data-i18n="chipMessenger">Facebook Messenger</span></label>
           <label class="chip"><input type="checkbox" value="WhatsApp Business"><span data-i18n="chipWhatsapp">WhatsApp Business</span></label>
+          <label class="chip"><input type="checkbox" id="channelOtherCheck"><span data-i18n="chipOther">Other</span></label>
         </div>
+        <input class="text-input other-reveal" id="channelOtherText" type="text" data-i18n-placeholder="channelOtherPlaceholder" placeholder="Where else? e.g. TikTok DMs" style="display:none;">
       </div>
 
       <div class="field">
@@ -827,7 +835,12 @@
             <input type="radio" name="use" value="screening">
             <span class="rt"><b data-i18n="useScreeningTitle">Screens, ranks, or filters job applicants</b><small data-i18n="useScreeningSub">High-risk under Annex III — this tool isn't enough on its own</small></span>
           </label>
+          <label class="radio-row">
+            <input type="radio" name="use" value="other">
+            <span class="rt"><b data-i18n="useOtherTitle">None of these — something else</b><small data-i18n="useOtherSub">Tell us briefly, we'll flag it for manual review</small></span>
+          </label>
         </div>
+        <textarea class="text-input other-reveal" id="useOtherText" rows="2" data-i18n-placeholder="useOtherPlaceholder" placeholder="Briefly, what does it do?" style="display:none;"></textarea>
       </div>
 
       <div class="field">
@@ -979,7 +992,9 @@
   const $ = (id) => document.getElementById(id);
   const bizname = $('bizname'), signatory = $('signatory'), lang = $('lang');
   const usecaseRadios = document.querySelectorAll('input[name="use"]');
-  const channelBoxes = document.querySelectorAll('#channels input[type="checkbox"]');
+  const channelBoxes = document.querySelectorAll('#channels input[type="checkbox"]:not(#channelOtherCheck)');
+  const channelOtherCheck = $('channelOtherCheck'), channelOtherText = $('channelOtherText');
+  const useOtherText = $('useOtherText');
 
   const translations = {
     en: {
@@ -1049,7 +1064,12 @@
       founderSig: `— Nikolay, founder`,
       disclaimer: `This tool is informational and does not constitute legal advice. It is designed to help limited-risk AI deployers meet Article 50 transparency obligations; it does not cover high-risk classification, technical documentation, or Member State-specific guidance. Review generated text before publishing it.`,
       footerLoc: `Transparently — Varna, Bulgaria`,
-      whatText: `Transparently is a free, independent tool — not a law firm, not a sales pitch. It checks whether your AI assistant needs an EU-mandated disclosure notice under Article 50, and generates one on the spot if it does. Every line is grounded in the regulation's actual wording, not a guess at "best practice."`
+      whatText: `Transparently is a free, independent tool — not a law firm, not a sales pitch. It checks whether your AI assistant needs an EU-mandated disclosure notice under Article 50, and generates one on the spot if it does. Every line is grounded in the regulation's actual wording, not a guess at "best practice."`,
+      chipOther: `Other`,
+      channelOtherPlaceholder: `Where else? e.g. TikTok DMs`,
+      useOtherTitle: `None of these — something else`,
+      useOtherSub: `Tell us briefly, we'll flag it for manual review`,
+      useOtherPlaceholder: `Briefly, what does it do?`
     },
     de: {
       brandSub: `EU-KI-Verordnung · Artikel-50-Tool`,
@@ -1118,7 +1138,12 @@
       founderSig: `— Nikolay, Gründer`,
       disclaimer: `Dieses Tool dient nur der Information und stellt keine Rechtsberatung dar. Es soll Betreibern von KI-Systemen mit geringem Risiko helfen, die Transparenzpflichten nach Artikel 50 zu erfüllen; es deckt keine Hochrisiko-Einstufung, technische Dokumentation oder länderspezifische Vorgaben ab. Prüfen Sie den erzeugten Text vor der Veröffentlichung.`,
       footerLoc: `Transparently — Varna, Bulgarien`,
-      whatText: `Transparently ist ein kostenloses, unabhängiges Tool — keine Anwaltskanzlei, kein Verkaufsgespräch. Es prüft, ob Ihr KI-Assistent einen EU-vorgeschriebenen Hinweis nach Artikel 50 benötigt, und erstellt diesen bei Bedarf sofort. Jede Zeile basiert auf dem tatsächlichen Wortlaut der Verordnung, nicht auf einer Vermutung über „Best Practice".`
+      whatText: `Transparently ist ein kostenloses, unabhängiges Tool — keine Anwaltskanzlei, kein Verkaufsgespräch. Es prüft, ob Ihr KI-Assistent einen EU-vorgeschriebenen Hinweis nach Artikel 50 benötigt, und erstellt diesen bei Bedarf sofort. Jede Zeile basiert auf dem tatsächlichen Wortlaut der Verordnung, nicht auf einer Vermutung über „Best Practice".`,
+      chipOther: `Sonstiges`,
+      channelOtherPlaceholder: `Wo noch? z. B. TikTok-DMs`,
+      useOtherTitle: `Nichts davon — etwas anderes`,
+      useOtherSub: `Kurz beschreiben, wir markieren es zur manuellen Prüfung`,
+      useOtherPlaceholder: `Kurz: Was macht es?`
     },
     fr: {
       brandSub: `Règlement IA UE · Outil Article 50`,
@@ -1187,7 +1212,12 @@
       founderSig: `— Nikolay, fondateur`,
       disclaimer: `Cet outil est informatif et ne constitue pas un conseil juridique. Il est conçu pour aider les déployeurs de systèmes d'IA à risque limité à respecter les obligations de transparence de l'article 50 ; il ne couvre pas la classification à haut risque, la documentation technique ni les règles propres à chaque État membre. Relisez le texte généré avant de le publier.`,
       footerLoc: `Transparently — Varna, Bulgarie`,
-      whatText: `Transparently est un outil gratuit et indépendant — pas un cabinet d'avocats, pas un argumentaire de vente. Il vérifie si votre assistant IA a besoin d'un avis obligatoire selon l'article 50 de l'UE, et en génère un immédiatement si c'est le cas. Chaque ligne repose sur le texte réel du règlement, pas sur une supposition de « bonnes pratiques ».`
+      whatText: `Transparently est un outil gratuit et indépendant — pas un cabinet d'avocats, pas un argumentaire de vente. Il vérifie si votre assistant IA a besoin d'un avis obligatoire selon l'article 50 de l'UE, et en génère un immédiatement si c'est le cas. Chaque ligne repose sur le texte réel du règlement, pas sur une supposition de « bonnes pratiques ».`,
+      chipOther: `Autre`,
+      channelOtherPlaceholder: `Où encore ? ex. DM TikTok`,
+      useOtherTitle: `Aucune de ces réponses — autre chose`,
+      useOtherSub: `Décrivez brièvement, nous le signalerons pour une révision manuelle`,
+      useOtherPlaceholder: `Brièvement, que fait-il ?`
     },
     lt: {
       brandSub: `ES DI aktas · 50 straipsnio įrankis`,
@@ -1256,7 +1286,12 @@
       founderSig: `— Nikolay, įkūrėjas`,
       disclaimer: `Šis įrankis yra informacinio pobūdžio ir nėra teisinė konsultacija. Jis skirtas padėti ribotos rizikos DI diegėjams įvykdyti Article 50 skaidrumo pareigas; jis neapima didelės rizikos klasifikavimo, techninės dokumentacijos ar konkrečios valstybės narės reikalavimų. Prieš skelbdami sugeneruotą tekstą, jį peržiūrėkite.`,
       footerLoc: `Transparently — Varna, Bulgarija`,
-      whatText: `„Transparently" yra nemokamas, nepriklausomas įrankis — ne advokatų kontora, ne pardavimo pasiūlymas. Jis patikrina, ar jūsų DI asistentui reikalingas ES privalomas pranešimas pagal Article 50, ir, jei taip, iškart jį sugeneruoja. Kiekviena eilutė grindžiama tikru reglamento tekstu, o ne spėjimu apie „gerą praktiką".`
+      whatText: `„Transparently" yra nemokamas, nepriklausomas įrankis — ne advokatų kontora, ne pardavimo pasiūlymas. Jis patikrina, ar jūsų DI asistentui reikalingas ES privalomas pranešimas pagal Article 50, ir, jei taip, iškart jį sugeneruoja. Kiekviena eilutė grindžiama tikru reglamento tekstu, o ne spėjimu apie „gerą praktiką".`,
+      chipOther: `Kita`,
+      channelOtherPlaceholder: `Kur dar? pvz., TikTok DM`,
+      useOtherTitle: `Nė vienas iš šių — kažkas kita`,
+      useOtherSub: `Trumpai aprašykite, pažymėsime rankinei peržiūrai`,
+      useOtherPlaceholder: `Trumpai, ką jis daro?`
     },
     et: {
       brandSub: `ELi tehisintellekti akt · Artikli 50 tööriist`,
@@ -1325,7 +1360,12 @@
       founderSig: `— Nikolay, asutaja`,
       disclaimer: `See tööriist on informatiivne ega kujuta endast õigusnõustamist. See on loodud aitama piiratud riskiga tehisintellekti kasutuselevõtjaid täitma Artikkel 50 läbipaistvuskohustusi; see ei kata suure riski klassifitseerimist, tehnilist dokumentatsiooni ega liikmesriigipõhiseid nõudeid. Vaadake loodud tekst üle enne avaldamist.`,
       footerLoc: `Transparently — Varna, Bulgaaria`,
-      whatText: `Transparently on tasuta, sõltumatu tööriist — mitte advokaadibüroo, mitte müügipakkumine. See kontrollib, kas teie tehisintellekti assistent vajab ELi kohustuslikku teatist vastavalt Artikkel 50-le, ja genereerib selle vajadusel kohe. Iga rida põhineb määruse tegelikul sõnastusel, mitte oletusel "heast tavast".`
+      whatText: `Transparently on tasuta, sõltumatu tööriist — mitte advokaadibüroo, mitte müügipakkumine. See kontrollib, kas teie tehisintellekti assistent vajab ELi kohustuslikku teatist vastavalt Artikkel 50-le, ja genereerib selle vajadusel kohe. Iga rida põhineb määruse tegelikul sõnastusel, mitte oletusel "heast tavast".`,
+      chipOther: `Muu`,
+      channelOtherPlaceholder: `Kus veel? nt TikTok DM`,
+      useOtherTitle: `Mitte ükski neist — midagi muud`,
+      useOtherSub: `Kirjeldage lühidalt, märgime käsitsi ülevaatuseks`,
+      useOtherPlaceholder: `Lühidalt, mida see teeb?`
     },
     hr: {
       brandSub: `EU Akt o UI-u · Alat za članak 50`,
@@ -1394,7 +1434,12 @@
       founderSig: `— Nikolay, osnivač`,
       disclaimer: `Ovaj alat je informativan i ne predstavlja pravni savjet. Osmišljen je kako bi pomogao korisnicima UI sustava s ograničenim rizikom da ispune obveze transparentnosti prema članku 50; ne pokriva klasifikaciju visokog rizika, tehničku dokumentaciju niti zahtjeve pojedinih država članica. Prije objave pregledajte generirani tekst.`,
       footerLoc: `Transparently — Varna, Bugarska`,
-      whatText: `Transparently je besplatan, neovisan alat — nije odvjetnički ured, nije prodajna ponuda. Provjerava treba li vašem UI asistentu EU obvezna obavijest prema članku 50, i odmah je generira ako treba. Svaki redak temelji se na stvarnom tekstu uredbe, a ne na pretpostavci o "dobroj praksi".`
+      whatText: `Transparently je besplatan, neovisan alat — nije odvjetnički ured, nije prodajna ponuda. Provjerava treba li vašem UI asistentu EU obvezna obavijest prema članku 50, i odmah je generira ako treba. Svaki redak temelji se na stvarnom tekstu uredbe, a ne na pretpostavci o "dobroj praksi".`,
+      chipOther: `Ostalo`,
+      channelOtherPlaceholder: `Gdje još? npr. TikTok DM`,
+      useOtherTitle: `Ništa od ovoga — nešto drugo`,
+      useOtherSub: `Ukratko opišite, označit ćemo za ručnu provjeru`,
+      useOtherPlaceholder: `Ukratko, što radi?`
     },
     bg: {
       brandSub: `Регламент на ЕС за ИИ · Инструмент по член 50`,
@@ -1463,7 +1508,12 @@
       founderSig: `— Николай, основател`,
       disclaimer: `Този инструмент е информативен и не представлява правен съвет. Предназначен е да помогне на внедрителите на ИИ системи с ограничен риск да изпълнят задълженията за прозрачност по член 50; не покрива класификация на висок риск, техническа документация или специфични изисквания на отделни държави членки. Прегледай генерирания текст, преди да го публикуваш.`,
       footerLoc: `Transparently — Варна, България`,
-      whatText: `Transparently е безплатен, независим инструмент — не адвокатска кантора, не търговско предложение. Проверява дали твоят AI асистент се нуждае от задължително по закона известие по член 50, и го генерира веднага, ако е нужно. Всеки ред се основава на реалния текст на регламента, не на предположение за "добра практика".`
+      whatText: `Transparently е безплатен, независим инструмент — не адвокатска кантора, не търговско предложение. Проверява дали твоят AI асистент се нуждае от задължително по закона известие по член 50, и го генерира веднага, ако е нужно. Всеки ред се основава на реалния текст на регламента, не на предположение за "добра практика".`,
+      chipOther: `Друго`,
+      channelOtherPlaceholder: `Къде другаде? напр. TikTok директни съобщения`,
+      useOtherTitle: `Нищо от изброените — нещо друго`,
+      useOtherSub: `Опишете накратко, ще го маркираме за ръчен преглед`,
+      useOtherPlaceholder: `Накратко, какво прави?`
     }
   };
 
@@ -1488,6 +1538,10 @@
       const key = el.getAttribute('data-i18n');
       if (dict[key]) el.textContent = dict[key];
     });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      if (dict[key]) el.placeholder = dict[key];
+    });
     document.documentElement.lang = code;
     const switcher = $('siteLang');
     if (switcher) switcher.value = code;
@@ -1507,7 +1561,12 @@
   }
 
   function selectedChannels(){
-    return Array.from(channelBoxes).filter(c => c.checked).map(c => c.value);
+    const picked = Array.from(channelBoxes).filter(c => c.checked).map(c => c.value);
+    if (channelOtherCheck.checked){
+      const custom = channelOtherText.value.trim();
+      if (custom) picked.push(custom);
+    }
+    return picked;
   }
 
   function placementTipFor(channels){
@@ -1531,6 +1590,7 @@
   function render(){
     const name = bizname.value.trim() || 'Your business';
     const use = document.querySelector('input[name="use"]:checked').value;
+    useOtherText.style.display = (use === 'other') ? '' : 'none';
     const channels = selectedChannels();
     const { compact, human } = todayParts();
     const ref = `ATR-${compact}-${initials(name)}`;
@@ -1555,9 +1615,16 @@
       statusText.textContent = 'Needs review — possible high-risk use';
       okContent.style.display = 'none';
       flagContent.style.display = '';
-      $('flagReason').textContent = use === 'screening'
-        ? 'Filtering or ranking job applicants is listed as high-risk under Annex III. That means technical documentation and human oversight on top of any disclosure notice.'
-        : 'Automated decisions about discounts, refunds, or credit can trigger additional obligations under Art. 6 and Annex III. Get a full risk assessment before relying on a disclosure notice alone.';
+      if (use === 'screening'){
+        $('flagReason').textContent = 'Filtering or ranking job applicants is listed as high-risk under Annex III. That means technical documentation and human oversight on top of any disclosure notice.';
+      } else if (use === 'other'){
+        const custom = useOtherText.value.trim();
+        $('flagReason').textContent = custom
+          ? `"${custom}" doesn't match a pattern this tool classifies automatically. Get a short manual risk assessment before relying on a disclosure notice alone.`
+          : 'Describe what it does above so we can point you in the right direction — this tool only auto-classifies the patterns listed.';
+      } else {
+        $('flagReason').textContent = 'Automated decisions about discounts, refunds, or credit can trigger additional obligations under Art. 6 and Annex III. Get a full risk assessment before relying on a disclosure notice alone.';
+      }
     }
   }
 
@@ -1579,6 +1646,15 @@
   lang.addEventListener('change', () => { render(); pulse(); });
   usecaseRadios.forEach(el => el.addEventListener('change', () => { render(); pulse(); }));
   channelBoxes.forEach(el => el.addEventListener('change', () => { render(); pulse(); }));
+  channelOtherCheck.addEventListener('change', () => {
+    channelOtherText.style.display = channelOtherCheck.checked ? '' : 'none';
+    if (!channelOtherCheck.checked) channelOtherText.value = '';
+    render(); pulse();
+  });
+  channelOtherText.addEventListener('input', () => { render(); });
+  channelOtherText.addEventListener('change', () => { pulse(); });
+  useOtherText.addEventListener('input', () => { render(); });
+  useOtherText.addEventListener('change', () => { pulse(); });
 
   $('copyBtn').addEventListener('click', async () => {
     const text = $('noticeText').textContent.replace(/^"|"$/g, '');
