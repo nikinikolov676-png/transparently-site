@@ -1,3 +1,8 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Chatbot Disclosure Check</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,20 +16,20 @@
     --ink-soft:#566059;
     --ink-faint:#8b938c;
     --line:#d9d6c9;
-    --accent:#0f6b5c;
-    --accent-strong:#0b4f44;
-    --accent-soft:#e3efe9;
-    --flag:#b5542a;
-    --flag-soft:#fbeadd;
-    --flag-strong:#8f4017;
-    --risk-ban:#b23a3a;
+    --accent:#0d9c74;
+    --accent-strong:#076b4e;
+    --accent-soft:#d2f2e4;
+    --flag:#e2531c;
+    --flag-soft:#fde3d2;
+    --flag-strong:#a83912;
+    --risk-ban:#cf3131;
     --risk-ban-soft:#f6e4e1;
-    --gold:#f0a23a;
+    --gold:#f5a416;
     --gold-ink:#2a1d08;
-    --brand-deep:#0b4f44;
+    --brand-deep:#073d34;
     --brand-deep-ink:#f6f4ec;
     --brand-deep-ink-soft:#bfe3da;
-    --accent-ring:rgba(15,107,92,0.35);
+    --accent-ring:rgba(13,156,116,0.4);
     --shadow:rgba(30,35,33,0.08);
   }
   @media (prefers-color-scheme: dark){
@@ -36,15 +41,15 @@
       --ink-soft:#a9b2a9;
       --ink-faint:#717b73;
       --line:#323a33;
-      --accent:#49c0a7;
-      --accent-strong:#7fdac6;
+      --accent:#2fe3ab;
+      --accent-strong:#80f2cf;
       --accent-soft:#1e332d;
-      --flag:#e29259;
+      --flag:#ff8a4c;
       --flag-soft:#33241a;
-      --flag-strong:#f3b084;
-      --risk-ban:#e2726b;
+      --flag-strong:#ffb382;
+      --risk-ban:#ff6b61;
       --risk-ban-soft:#3a2220;
-      --accent-ring:rgba(73,192,167,0.4);
+      --accent-ring:rgba(47,227,171,0.45);
       --shadow:rgba(0,0,0,0.35);
     }
   }
@@ -91,8 +96,8 @@
   /* ---------- hero band ---------- */
   .hero-band{
     background:
-      radial-gradient(circle at 88% 8%, rgba(240,162,58,0.16), transparent 42%),
-      radial-gradient(circle at 6% 95%, rgba(143,227,206,0.12), transparent 48%),
+      radial-gradient(circle at 88% 8%, rgba(245,164,22,0.28), transparent 42%),
+      radial-gradient(circle at 6% 95%, rgba(47,227,171,0.22), transparent 48%),
       var(--brand-deep);
     border-radius:22px;
     padding:34px 36px 34px;
@@ -244,9 +249,9 @@
     font-weight:600;
     line-height:1.1;
   }
-  .stat .num.gold{ color:var(--gold); }
-  .stat .num.coral{ color:#f2948c; }
-  .stat .num.mint{ color:#8fe3ce; }
+  .stat .num.gold{ color:#ffc342; }
+  .stat .num.coral{ color:#ff8a76; }
+  .stat .num.mint{ color:#4ff0c4; }
   .stat .cap{
     font-size:12px;
     color:var(--brand-deep-ink-soft);
@@ -737,6 +742,8 @@
     .record-card{ border:none; box-shadow:none; }
   }
 </style>
+</head>
+<body>
 
 <div class="page">
   <header class="hero-band">
@@ -771,7 +778,7 @@
         </div>
       </div>
       <div class="topbar-right">
-        <div class="deadline-pill"><span class="live-dot"></span><span data-i18n="deadlineLabel">Enforcement deadline</span>&nbsp;<span class="mono">2 Aug 2026</span></div>
+        <div class="deadline-pill"><span class="live-dot"></span><span data-i18n="deadlineLabel">In force since</span>&nbsp;<span class="mono">2 Aug 2026</span></div>
         <select class="lang-switch" id="siteLang" aria-label="Site language">
           <option value="en">EN</option>
           <option value="de">DE</option>
@@ -785,12 +792,12 @@
     </div>
 
     <h1 class="hero" data-i18n="heroTitle">Does your chatbot need to say it's a bot?</h1>
-    <p class="hero-lede" data-i18n="heroLede">Your customers deserve to know when they're talking to a machine, not a person. Soon, the law will insist on it too. Answer four quick questions and walk away with a dated notice you can publish today.</p>
+    <p class="hero-lede" data-i18n="heroLede">Your customers deserve to know when they're talking to a machine, not a person. Since 2 August 2026, the law requires it too. Answer four quick questions and walk away with a dated notice you can publish today.</p>
 
     <div class="hero-stats">
-      <div class="stat"><div class="num coral" data-prefix="€" data-target="35" data-suffix="M">€0M</div><div class="cap" data-i18n="statFineCap">the cost of staying quiet about it</div></div>
-      <div class="stat"><div class="num mint" data-prefix="" data-target="40" data-suffix=" sec">0 sec</div><div class="cap" data-i18n="statTimeCap">to check your chatbot</div></div>
-      <div class="stat"><div class="num gold" data-prefix="" data-target="1" data-suffix=" of 4">0 of 4</div><div class="cap" data-i18n="statTierCap">AI Act risk tiers — this covers it</div></div>
+      <div class="stat"><div class="num coral" data-prefix="€" data-target="15" data-suffix="M">€15M</div><div class="cap" data-i18n="statFineCap">the cost of staying quiet about it</div></div>
+      <div class="stat"><div class="num mint" data-prefix="" data-target="40" data-suffix=" sec">40 sec</div><div class="cap" data-i18n="statTimeCap">to check your chatbot</div></div>
+      <div class="stat"><div class="num gold" data-prefix="" data-target="1" data-suffix=" of 4">1 of 4</div><div class="cap" data-i18n="statTierCap">AI Act risk tiers — this covers it</div></div>
     </div>
   </header>
 
@@ -846,13 +853,13 @@
       <div class="field">
         <label class="flabel" for="lang" data-i18n="labelNoticeLang">Site language for the notice</label>
         <select class="select-input" id="lang">
-          <option value="en">English — available</option>
-          <option value="de" disabled>German — in full version</option>
-          <option value="fr" disabled>French — in full version</option>
-          <option value="lt" disabled>Lithuanian — in full version</option>
-          <option value="et" disabled>Estonian — in full version</option>
-          <option value="hr" disabled>Croatian — in full version</option>
-          <option value="bg" disabled>Bulgarian — in full version</option>
+          <option value="en">English</option>
+          <option value="de">German — Deutsch</option>
+          <option value="fr">French — Français</option>
+          <option value="lt">Lithuanian — Lietuvių</option>
+          <option value="et">Estonian — Eesti</option>
+          <option value="hr">Croatian — Hrvatski</option>
+          <option value="bg">Bulgarian — Български</option>
         </select>
       </div>
 
@@ -890,7 +897,8 @@
           <button class="btn" id="printBtn" data-i18n="btnPrint">Print record</button>
           <span class="toast" id="toast" data-i18n="toastCopied">Copied</span>
         </div>
-        <p class="lang-note" data-i18n="langNotice">The generated legal notice stays in English for now, until each language gets its own legal review.</p>
+        <p class="lang-note" data-i18n="langNotice">This notice is translated into your selected language using the same plain wording as the English original — have local counsel confirm it before high-stakes use.</p>
+        <p class="lang-note" data-i18n="privacyNote">Nothing you type here is sent anywhere — this generator runs entirely in your browser; nothing is stored on any server.</p>
       </div>
 
       <div id="flagContent" style="display:none;">
@@ -980,7 +988,7 @@
     </div>
   </section>
 
-  <p class="disclaimer" data-i18n="disclaimer">This tool is informational and does not constitute legal advice. It is designed to help limited-risk AI deployers meet Article 50 transparency obligations; it does not cover high-risk classification, technical documentation, or Member State-specific guidance. Review generated text before publishing it.</p>
+  <p class="disclaimer" data-i18n="disclaimer">This tool is informational and does not constitute legal advice. Article 50(1) is framed as a provider obligation, but in practice it's deployers — the businesses running the AI system — who publish this notice to their own users, except where it's already obvious from context that they're talking to AI. This tool covers that limited-risk disclosure only; it doesn't cover Art. 50(3)/50(4) (biometric or emotion-recognition systems, deepfakes, AI-generated text on matters of public interest), high-risk classification, technical documentation, or Member State-specific guidance. Review generated text before publishing it.</p>
 
   <footer class="site-foot">
     <span data-i18n="footerLoc">Transparently — Varna, Bulgaria</span>
@@ -999,9 +1007,9 @@
   const translations = {
     en: {
       brandSub: `EU AI Act · Article 50 toolkit`,
-      deadlineLabel: `Enforcement deadline`,
+      deadlineLabel: `In force since`,
       heroTitle: `Does your chatbot need to say it's a bot?`,
-      heroLede: `Your customers deserve to know when they're talking to a machine, not a person. Soon, the law will insist on it too. Answer four quick questions and walk away with a dated notice you can publish today.`,
+      heroLede: `Your customers deserve to know when they're talking to a machine, not a person. Since 2 August 2026, the law requires it too. Answer four quick questions and walk away with a dated notice you can publish today.`,
       statFineCap: `the cost of staying quiet about it`,
       statTimeCap: `to check your chatbot`,
       statTierCap: `AI Act risk tiers — this covers it`,
@@ -1028,7 +1036,8 @@
       btnCopy: `Copy notice text`,
       btnPrint: `Print record`,
       toastCopied: `Copied`,
-      langNotice: `The generated legal notice stays in English for now, until each language gets its own legal review.`,
+      langNotice: `This notice is translated into your selected language using the same plain wording as the English original — have local counsel confirm it before high-stakes use.`,
+      privacyNote: `Nothing you type here is sent anywhere — this generator runs entirely in your browser; nothing is stored on any server.`,
       flagTitle: `This generator only covers Article 50 disclosure notices for limited-risk assistants.`,
       sigSigned: `Signed:`,
       sigRecordId: `Record id:`,
@@ -1062,7 +1071,7 @@
       trust3Desc: `Not a forty-tab compliance suite. One regulation, one risk tier, one clear answer.`,
       founderQuote: `"I built Transparently as an independent, EU-based developer — not a law firm. That's also why it only covers the one thing I can get precisely right: the Article 50 disclosure notice. Everything else, it tells you to go check with someone qualified."`,
       founderSig: `— Nikolay, founder`,
-      disclaimer: `This tool is informational and does not constitute legal advice. It is designed to help limited-risk AI deployers meet Article 50 transparency obligations; it does not cover high-risk classification, technical documentation, or Member State-specific guidance. Review generated text before publishing it.`,
+      disclaimer: `This tool is informational and does not constitute legal advice. Article 50(1) is framed as a provider obligation, but in practice it's deployers — the businesses running the AI system — who publish this notice to their own users, except where it's already obvious from context that they're talking to AI. This tool covers that limited-risk disclosure only; it doesn't cover Art. 50(3)/50(4) (biometric or emotion-recognition systems, deepfakes, AI-generated text on matters of public interest), high-risk classification, technical documentation, or Member State-specific guidance. Review generated text before publishing it.`,
       footerLoc: `Transparently — Varna, Bulgaria`,
       whatText: `Transparently is a free, independent tool — not a law firm, not a sales pitch. It checks whether your AI assistant needs an EU-mandated disclosure notice under Article 50, and generates one on the spot if it does. Every line is grounded in the regulation's actual wording, not a guess at "best practice."`,
       chipOther: `Other`,
@@ -1073,9 +1082,9 @@
     },
     de: {
       brandSub: `EU-KI-Verordnung · Artikel-50-Tool`,
-      deadlineLabel: `Frist für die Durchsetzung`,
+      deadlineLabel: `In Kraft seit`,
       heroTitle: `Muss Ihr Chatbot sagen, dass er ein Bot ist?`,
-      heroLede: `Ihre Kunden haben das Recht zu wissen, wenn sie mit einer Maschine sprechen, nicht mit einem Menschen. Bald verlangt das auch das Gesetz. Beantworten Sie vier kurze Fragen und erhalten Sie einen datierten Hinweis, den Sie noch heute veröffentlichen können.`,
+      heroLede: `Ihre Kunden haben das Recht zu wissen, wenn sie mit einer Maschine sprechen, nicht mit einem Menschen. Seit dem 2. August 2026 verlangt das auch das Gesetz. Beantworten Sie vier kurze Fragen und erhalten Sie einen datierten Hinweis, den Sie noch heute veröffentlichen können.`,
       statFineCap: `kostet es, wenn Sie schweigen`,
       statTimeCap: `um Ihren Chatbot zu prüfen`,
       statTierCap: `Risikostufen im AI Act — diese hier wird abgedeckt`,
@@ -1102,7 +1111,8 @@
       btnCopy: `Hinweistext kopieren`,
       btnPrint: `Nachweis drucken`,
       toastCopied: `Kopiert`,
-      langNotice: `Der generierte Rechtstext bleibt vorerst auf Englisch, bis jede Sprache einzeln rechtlich geprüft ist.`,
+      langNotice: `Dieser Hinweis ist in die gewählte Sprache übersetzt, mit demselben einfachen Wortlaut wie das englische Original — lassen Sie ihn vor wichtiger Nutzung von einem Anwalt vor Ort prüfen.`,
+      privacyNote: `Nichts, was Sie hier eingeben, wird irgendwohin gesendet — dieser Generator läuft vollständig in Ihrem Browser; nichts wird auf einem Server gespeichert.`,
       flagTitle: `Dieser Generator deckt nur Artikel-50-Hinweise für Systeme mit geringem Risiko ab.`,
       sigSigned: `Unterzeichnet:`,
       sigRecordId: `Nachweis-ID:`,
@@ -1136,7 +1146,7 @@
       trust3Desc: `Keine Compliance-Suite mit vierzig Reitern. Eine Verordnung, eine Risikostufe, eine klare Antwort.`,
       founderQuote: `„Ich habe Transparently als unabhängiger Entwickler in der EU gebaut — keine Anwaltskanzlei. Deshalb deckt es nur das eine ab, was ich wirklich präzise beherrsche: den Artikel-50-Hinweis. Für alles andere verweist es Sie an jemanden Qualifizierten."`,
       founderSig: `— Nikolay, Gründer`,
-      disclaimer: `Dieses Tool dient nur der Information und stellt keine Rechtsberatung dar. Es soll Betreibern von KI-Systemen mit geringem Risiko helfen, die Transparenzpflichten nach Artikel 50 zu erfüllen; es deckt keine Hochrisiko-Einstufung, technische Dokumentation oder länderspezifische Vorgaben ab. Prüfen Sie den erzeugten Text vor der Veröffentlichung.`,
+      disclaimer: `Dieses Tool dient nur der Information und stellt keine Rechtsberatung dar. Artikel 50(1) ist formal eine Pflicht der Anbieter, in der Praxis veröffentlichen aber die Betreiber — die Unternehmen, die das KI-System einsetzen — diesen Hinweis gegenüber ihren eigenen Nutzern, außer es ist aus dem Kontext bereits offensichtlich, dass es sich um KI handelt. Dieses Tool deckt nur diese Transparenzpflicht mit geringem Risiko ab; es deckt nicht Art. 50(3)/50(4) (biometrische oder emotionserkennende Systeme, Deepfakes, KI-generierte Texte zu Angelegenheiten von öffentlichem Interesse), Hochrisiko-Einstufung, technische Dokumentation oder länderspezifische Vorgaben ab. Prüfen Sie den erzeugten Text vor der Veröffentlichung.`,
       footerLoc: `Transparently — Varna, Bulgarien`,
       whatText: `Transparently ist ein kostenloses, unabhängiges Tool — keine Anwaltskanzlei, kein Verkaufsgespräch. Es prüft, ob Ihr KI-Assistent einen EU-vorgeschriebenen Hinweis nach Artikel 50 benötigt, und erstellt diesen bei Bedarf sofort. Jede Zeile basiert auf dem tatsächlichen Wortlaut der Verordnung, nicht auf einer Vermutung über „Best Practice".`,
       chipOther: `Sonstiges`,
@@ -1147,9 +1157,9 @@
     },
     fr: {
       brandSub: `Règlement IA UE · Outil Article 50`,
-      deadlineLabel: `Échéance d'application`,
+      deadlineLabel: `En vigueur depuis`,
       heroTitle: `Votre chatbot doit-il dire qu'il en est un ?`,
-      heroLede: `Vos clients méritent de savoir quand ils parlent à une machine, pas à une personne. Bientôt, la loi l'exigera aussi. Répondez à quatre questions rapides et repartez avec un avis daté que vous pouvez publier dès aujourd'hui.`,
+      heroLede: `Vos clients méritent de savoir quand ils parlent à une machine, pas à une personne. Depuis le 2 août 2026, la loi l'exige aussi. Répondez à quatre questions rapides et repartez avec un avis daté que vous pouvez publier dès aujourd'hui.`,
       statFineCap: `le prix du silence`,
       statTimeCap: `pour vérifier votre chatbot`,
       statTierCap: `niveaux de risque de l'IA Act — celui-ci est couvert`,
@@ -1176,7 +1186,8 @@
       btnCopy: `Copier le texte de l'avis`,
       btnPrint: `Imprimer le registre`,
       toastCopied: `Copié`,
-      langNotice: `L'avis juridique généré reste en anglais pour l'instant, jusqu'à ce que chaque langue reçoive sa propre relecture juridique.`,
+      langNotice: `Cet avis est traduit dans la langue choisie, avec la même formulation simple que l'original anglais — faites-le confirmer par un avocat local avant un usage à enjeux élevés.`,
+      privacyNote: `Rien de ce que vous saisissez ici n'est envoyé où que ce soit — ce générateur fonctionne entièrement dans votre navigateur ; rien n'est stocké sur un serveur.`,
       flagTitle: `Ce générateur ne couvre que les avis Article 50 pour les assistants à risque limité.`,
       sigSigned: `Signé :`,
       sigRecordId: `ID du registre :`,
@@ -1210,7 +1221,7 @@
       trust3Desc: `Pas une suite de conformité à quarante onglets. Un règlement, un niveau de risque, une réponse claire.`,
       founderQuote: `« J'ai créé Transparently en tant que développeur indépendant basé dans l'UE — pas un cabinet d'avocats. C'est aussi pourquoi il ne couvre que la seule chose que je peux maîtriser précisément : l'avis de l'article 50. Pour tout le reste, il vous renvoie vers quelqu'un de qualifié. »`,
       founderSig: `— Nikolay, fondateur`,
-      disclaimer: `Cet outil est informatif et ne constitue pas un conseil juridique. Il est conçu pour aider les déployeurs de systèmes d'IA à risque limité à respecter les obligations de transparence de l'article 50 ; il ne couvre pas la classification à haut risque, la documentation technique ni les règles propres à chaque État membre. Relisez le texte généré avant de le publier.`,
+      disclaimer: `Cet outil est informatif et ne constitue pas un conseil juridique. L'article 50(1) est formellement une obligation du fournisseur, mais en pratique, ce sont les déployeurs — les entreprises qui exploitent le système d'IA — qui publient cet avis auprès de leurs propres utilisateurs, sauf lorsque le contexte rend déjà évident qu'il s'agit d'une IA. Cet outil ne couvre que cette obligation de transparence à risque limité ; il ne couvre pas les art. 50(3)/50(4) (systèmes biométriques ou de reconnaissance des émotions, deepfakes, textes générés par IA sur des sujets d'intérêt public), la classification à haut risque, la documentation technique ni les règles propres à chaque État membre. Relisez le texte généré avant de le publier.`,
       footerLoc: `Transparently — Varna, Bulgarie`,
       whatText: `Transparently est un outil gratuit et indépendant — pas un cabinet d'avocats, pas un argumentaire de vente. Il vérifie si votre assistant IA a besoin d'un avis obligatoire selon l'article 50 de l'UE, et en génère un immédiatement si c'est le cas. Chaque ligne repose sur le texte réel du règlement, pas sur une supposition de « bonnes pratiques ».`,
       chipOther: `Autre`,
@@ -1221,9 +1232,9 @@
     },
     lt: {
       brandSub: `ES DI aktas · 50 straipsnio įrankis`,
-      deadlineLabel: `Taikymo terminas`,
+      deadlineLabel: `Galioja nuo`,
       heroTitle: `Ar jūsų pokalbių robotas turi prisipažinti, kad jis – robotas?`,
-      heroLede: `Jūsų klientai nusipelno žinoti, kada kalba su mašina, o ne su žmogumi. Netrukus to reikalaus ir įstatymas. Atsakykite į keturis trumpus klausimus ir gaukite datuotą pranešimą, kurį galite skelbti jau šiandien.`,
+      heroLede: `Jūsų klientai nusipelno žinoti, kada kalba su mašina, o ne su žmogumi. Nuo 2026 m. rugpjūčio 2 d. to reikalauja ir įstatymas. Atsakykite į keturis trumpus klausimus ir gaukite datuotą pranešimą, kurį galite skelbti jau šiandien.`,
       statFineCap: `kainuoja tylėjimas`,
       statTimeCap: `patikrinti pokalbių robotą`,
       statTierCap: `DI akto rizikos lygiai — šis apimtas`,
@@ -1250,7 +1261,8 @@
       btnCopy: `Kopijuoti pranešimo tekstą`,
       btnPrint: `Spausdinti įrašą`,
       toastCopied: `Nukopijuota`,
-      langNotice: `Sugeneruotas teisinis tekstas kol kas lieka anglų kalba, kol kiekviena kalba sulauks atskiros teisinės peržiūros.`,
+      langNotice: `Šis pranešimas išverstas į pasirinktą kalbą, naudojant tą pačią paprastą formuluotę kaip ir anglų originalas — prieš svarbų naudojimą paprašykite vietos teisininko jį patikrinti.`,
+      privacyNote: `Niekas, ką čia įvedate, niekur nesiunčiama — šis generatorius veikia visiškai jūsų naršyklėje; niekas nesaugoma jokiame serveryje.`,
       flagTitle: `Šis generatorius apima tik Article 50 pranešimus ribotos rizikos asistentams.`,
       sigSigned: `Pasirašė:`,
       sigRecordId: `Įrašo ID:`,
@@ -1284,7 +1296,7 @@
       trust3Desc: `Ne keturiasdešimties skirtukų atitikties paketas. Vienas reglamentas, vienas rizikos lygis, vienas aiškus atsakymas.`,
       founderQuote: `„Transparently sukūriau kaip nepriklausomas, ES bazuotas kūrėjas — ne kaip advokatų kontora. Todėl jis apima tik tai, ką galiu padaryti tiksliai: Article 50 pranešimą. Visa kita nukreipia jus pas kvalifikuotą specialistą."`,
       founderSig: `— Nikolay, įkūrėjas`,
-      disclaimer: `Šis įrankis yra informacinio pobūdžio ir nėra teisinė konsultacija. Jis skirtas padėti ribotos rizikos DI diegėjams įvykdyti Article 50 skaidrumo pareigas; jis neapima didelės rizikos klasifikavimo, techninės dokumentacijos ar konkrečios valstybės narės reikalavimų. Prieš skelbdami sugeneruotą tekstą, jį peržiūrėkite.`,
+      disclaimer: `Šis įrankis yra informacinio pobūdžio ir nėra teisinė konsultacija. Article 50(1) formaliai yra tiekėjo pareiga, tačiau praktiškai šį pranešimą savo naudotojams skelbia diegėjai — verslai, naudojantys DI sistemą — nebent iš konteksto jau aišku, kad bendraujama su DI. Šis įrankis apima tik šią ribotos rizikos skaidrumo pareigą; jis neapima 50(3)/50(4) straipsnių (biometrinių ar emocijas atpažįstančių sistemų, deepfake turinio, DI sugeneruoto teksto viešojo intereso klausimais), didelės rizikos klasifikavimo, techninės dokumentacijos ar konkrečios valstybės narės reikalavimų. Prieš skelbdami sugeneruotą tekstą, jį peržiūrėkite.`,
       footerLoc: `Transparently — Varna, Bulgarija`,
       whatText: `„Transparently" yra nemokamas, nepriklausomas įrankis — ne advokatų kontora, ne pardavimo pasiūlymas. Jis patikrina, ar jūsų DI asistentui reikalingas ES privalomas pranešimas pagal Article 50, ir, jei taip, iškart jį sugeneruoja. Kiekviena eilutė grindžiama tikru reglamento tekstu, o ne spėjimu apie „gerą praktiką".`,
       chipOther: `Kita`,
@@ -1295,9 +1307,9 @@
     },
     et: {
       brandSub: `ELi tehisintellekti akt · Artikli 50 tööriist`,
-      deadlineLabel: `Jõustumise tähtaeg`,
+      deadlineLabel: `Kehtib alates`,
       heroTitle: `Kas teie vestlusrobot peab ütlema, et ta on robot?`,
-      heroLede: `Teie kliendid väärivad teadmist, kui nad suhtlevad masinaga, mitte inimesega. Varsti nõuab seda ka seadus. Vastake neljale lühikesele küsimusele ja saate dateeritud teatise, mille saate juba täna avaldada.`,
+      heroLede: `Teie kliendid väärivad teadmist, kui nad suhtlevad masinaga, mitte inimesega. Alates 2. augustist 2026 nõuab seda ka seadus. Vastake neljale lühikesele küsimusele ja saate dateeritud teatise, mille saate juba täna avaldada.`,
       statFineCap: `maksab vaikimine`,
       statTimeCap: `vestlusroboti kontrollimiseks`,
       statTierCap: `tehisintellekti akti riskitaset — see on kaetud`,
@@ -1324,7 +1336,8 @@
       btnCopy: `Kopeeri teatise tekst`,
       btnPrint: `Prindi dokument`,
       toastCopied: `Kopeeritud`,
-      langNotice: `Loodud õigustekst jääb esialgu ainult inglise keelde, kuni iga keel saab oma õigusliku ülevaatuse.`,
+      langNotice: `See teatis on tõlgitud valitud keelde, kasutades sama lihtsat sõnastust nagu ingliskeelne originaal — laske see enne olulist kasutamist kohalikul juristil üle vaadata.`,
+      privacyNote: `Miski, mida siia sisestate, ei liigu kuhugi — see generaator töötab täielikult teie brauseris; midagi ei salvestata üheski serveris.`,
       flagTitle: `See generaator katab ainult Artikkel 50 teatisi piiratud riskiga assistentidele.`,
       sigSigned: `Allkirjastanud:`,
       sigRecordId: `Dokumendi ID:`,
@@ -1358,7 +1371,7 @@
       trust3Desc: `Mitte neljakümne vahelehega vastavussüsteem. Üks määrus, üks riskitase, üks selge vastus.`,
       founderQuote: `"Ehitasin Transparently sõltumatu, ELis asuva arendajana — mitte advokaadibürooga. Seepärast katab see ainult ühte asja, mida suudan täpselt teha: Artikkel 50 teatist. Kõige muu puhul suunab see teid pädeva spetsialisti juurde."`,
       founderSig: `— Nikolay, asutaja`,
-      disclaimer: `See tööriist on informatiivne ega kujuta endast õigusnõustamist. See on loodud aitama piiratud riskiga tehisintellekti kasutuselevõtjaid täitma Artikkel 50 läbipaistvuskohustusi; see ei kata suure riski klassifitseerimist, tehnilist dokumentatsiooni ega liikmesriigipõhiseid nõudeid. Vaadake loodud tekst üle enne avaldamist.`,
+      disclaimer: `See tööriist on informatiivne ega kujuta endast õigusnõustamist. Artikkel 50(1) on vormiliselt pakkuja kohustus, kuid praktikas avaldavad selle teatise oma kasutajatele kasutuselevõtjad — ettevõtted, kes tehisintellekti süsteemi käitavad —, välja arvatud juhul, kui kontekstist on juba selge, et tegemist on tehisintellektiga. See tööriist katab ainult seda piiratud riskiga läbipaistvuskohustust; see ei kata artikleid 50(3)/50(4) (biomeetrilised või emotsioone tuvastavad süsteemid, deepfake'id, tehisintellekti loodud tekst avaliku huvi küsimustes), suure riski klassifitseerimist, tehnilist dokumentatsiooni ega liikmesriigipõhiseid nõudeid. Vaadake loodud tekst üle enne avaldamist.`,
       footerLoc: `Transparently — Varna, Bulgaaria`,
       whatText: `Transparently on tasuta, sõltumatu tööriist — mitte advokaadibüroo, mitte müügipakkumine. See kontrollib, kas teie tehisintellekti assistent vajab ELi kohustuslikku teatist vastavalt Artikkel 50-le, ja genereerib selle vajadusel kohe. Iga rida põhineb määruse tegelikul sõnastusel, mitte oletusel "heast tavast".`,
       chipOther: `Muu`,
@@ -1369,9 +1382,9 @@
     },
     hr: {
       brandSub: `EU Akt o UI-u · Alat za članak 50`,
-      deadlineLabel: `Rok za primjenu`,
+      deadlineLabel: `Na snazi od`,
       heroTitle: `Mora li vaš chatbot reći da je bot?`,
-      heroLede: `Vaši klijenti zaslužuju znati kada razgovaraju sa strojem, a ne s osobom. Uskoro će to zahtijevati i zakon. Odgovorite na četiri kratka pitanja i dobit ćete datiranu obavijest koju možete objaviti već danas.`,
+      heroLede: `Vaši klijenti zaslužuju znati kada razgovaraju sa strojem, a ne s osobom. Od 2. kolovoza 2026. to zahtijeva i zakon. Odgovorite na četiri kratka pitanja i dobit ćete datiranu obavijest koju možete objaviti već danas.`,
       statFineCap: `cijena šutnje`,
       statTimeCap: `za provjeru vašeg chatbota`,
       statTierCap: `razine rizika u Aktu o UI-u — ova je pokrivena`,
@@ -1398,7 +1411,8 @@
       btnCopy: `Kopiraj tekst obavijesti`,
       btnPrint: `Ispiši zapis`,
       toastCopied: `Kopirano`,
-      langNotice: `Generirani pravni tekst za sada ostaje na engleskom, dok svaki jezik ne dobije vlastitu pravnu provjeru.`,
+      langNotice: `Ova obavijest prevedena je na odabrani jezik, koristeći istu jednostavnu formulaciju kao i engleski izvornik — prije važnije upotrebe neka je potvrdi lokalni odvjetnik.`,
+      privacyNote: `Ništa od onoga što ovdje upišete nikamo se ne šalje — ovaj generator radi u potpunosti u vašem pregledniku; ništa se ne pohranjuje ni na jednom poslužitelju.`,
       flagTitle: `Ovaj generator pokriva samo obavijesti prema članku 50 za asistente s ograničenim rizikom.`,
       sigSigned: `Potpisao/la:`,
       sigRecordId: `ID zapisa:`,
@@ -1432,7 +1446,7 @@
       trust3Desc: `Nije paket za usklađenost sa četrdeset kartica. Jedna uredba, jedna razina rizika, jedan jasan odgovor.`,
       founderQuote: `"Transparently sam izgradio kao neovisan razvojni programer sa sjedištem u EU-u — ne kao odvjetnički ured. Zato pokriva samo ono što mogu napraviti precizno: obavijest prema članku 50. Za sve ostalo upućuje vas na kvalificiranu osobu."`,
       founderSig: `— Nikolay, osnivač`,
-      disclaimer: `Ovaj alat je informativan i ne predstavlja pravni savjet. Osmišljen je kako bi pomogao korisnicima UI sustava s ograničenim rizikom da ispune obveze transparentnosti prema članku 50; ne pokriva klasifikaciju visokog rizika, tehničku dokumentaciju niti zahtjeve pojedinih država članica. Prije objave pregledajte generirani tekst.`,
+      disclaimer: `Ovaj alat je informativan i ne predstavlja pravni savjet. Članak 50(1) formalno je obveza pružatelja, no u praksi ovu obavijest svojim korisnicima objavljuju korisnici sustava (deployeri) — poduzeća koja koriste UI sustav — osim ako iz konteksta već nije očito da se radi o UI-u. Ovaj alat pokriva samo tu obvezu transparentnosti ograničenog rizika; ne pokriva čl. 50(3)/50(4) (biometrijske ili sustave za prepoznavanje emocija, deepfakeove, UI generirani tekst o pitanjima od javnog interesa), klasifikaciju visokog rizika, tehničku dokumentaciju niti zahtjeve pojedinih država članica. Prije objave pregledajte generirani tekst.`,
       footerLoc: `Transparently — Varna, Bugarska`,
       whatText: `Transparently je besplatan, neovisan alat — nije odvjetnički ured, nije prodajna ponuda. Provjerava treba li vašem UI asistentu EU obvezna obavijest prema članku 50, i odmah je generira ako treba. Svaki redak temelji se na stvarnom tekstu uredbe, a ne na pretpostavci o "dobroj praksi".`,
       chipOther: `Ostalo`,
@@ -1443,9 +1457,9 @@
     },
     bg: {
       brandSub: `Регламент на ЕС за ИИ · Инструмент по член 50`,
-      deadlineLabel: `Краен срок за прилагане`,
+      deadlineLabel: `В сила от`,
       heroTitle: `Трябва ли вашият чатбот да казва, че е бот?`,
-      heroLede: `Клиентите ви заслужават да знаят, когато говорят с машина, а не с човек. Скоро това ще изисква и законът. Отговорете на четири кратки въпроса и получете датирано известие, което можете да публикувате още днес.`,
+      heroLede: `Клиентите ви заслужават да знаят, когато говорят с машина, а не с човек. От 2 август 2026 г. това изисква и законът. Отговорете на четири кратки въпроса и получете датирано известие, което можете да публикувате още днес.`,
       statFineCap: `цената на мълчанието`,
       statTimeCap: `за проверка на чатбота ви`,
       statTierCap: `рискови нива по AI Act — това е покрито`,
@@ -1472,7 +1486,8 @@
       btnCopy: `Копирай текста на известието`,
       btnPrint: `Разпечатай записа`,
       toastCopied: `Копирано`,
-      langNotice: `Генерираният правен текст засега остава на английски, докато всеки език получи собствен правен преглед.`,
+      langNotice: `Това известие е преведено на избрания от вас език, със същата опростена формулировка като английския оригинал — преди да го използвате за нещо по-сериозно, дай го за проверка на местен юрист.`,
+      privacyNote: `Нищо от това, което въвеждаш тук, не се изпраща никъде — генераторът работи изцяло в твоя браузър; нищо не се съхранява на сървър.`,
       flagTitle: `Този генератор покрива само известия по член 50 за асистенти с ограничен риск.`,
       sigSigned: `Подписано:`,
       sigRecordId: `ID на записа:`,
@@ -1506,7 +1521,7 @@
       trust3Desc: `Не е compliance пакет с четиресет раздела. Един регламент, едно рисково ниво, един ясен отговор.`,
       founderQuote: `"Изградих Transparently като независим разработчик, базиран в ЕС — не като адвокатска кантора. Затова покрива само едно нещо, което мога да направя точно: известието по член 50. За всичко останало те насочва към квалифициран специалист."`,
       founderSig: `— Николай, основател`,
-      disclaimer: `Този инструмент е информативен и не представлява правен съвет. Предназначен е да помогне на внедрителите на ИИ системи с ограничен риск да изпълнят задълженията за прозрачност по член 50; не покрива класификация на висок риск, техническа документация или специфични изисквания на отделни държави членки. Прегледай генерирания текст, преди да го публикуваш.`,
+      disclaimer: `Този инструмент е информативен и не представлява правен съвет. Член 50(1) формално е задължение на доставчика, но на практика точно внедрителите — бизнесите, които използват ИИ системата — публикуват това известие пред собствените си потребители, освен когато от контекста вече е ясно, че се общува с ИИ. Този инструмент покрива само това задължение за прозрачност с ограничен риск; не покрива чл. 50(3)/50(4) (биометрични или разпознаващи емоции системи, дийпфейкове, генериран от ИИ текст по въпроси от обществен интерес), класификация на висок риск, техническа документация или специфични изисквания на отделни държави членки. Прегледай генерирания текст, преди да го публикуваш.`,
       footerLoc: `Transparently — Варна, България`,
       whatText: `Transparently е безплатен, независим инструмент — не адвокатска кантора, не търговско предложение. Проверява дали твоят AI асистент се нуждае от задължително по закона известие по член 50, и го генерира веднага, ако е нужно. Всеки ред се основава на реалния текст на регламента, не на предположение за "добра практика".`,
       chipOther: `Друго`,
@@ -1569,22 +1584,58 @@
     return picked;
   }
 
-  function placementTipFor(channels){
+  const channelKeyByValue = {
+    'Website chat widget': 'chipWebsite',
+    'Instagram DM': 'chipInstagram',
+    'Facebook Messenger': 'chipMessenger',
+    'WhatsApp Business': 'chipWhatsapp'
+  };
+
+  function localizedChannel(channel, langCode){
+    const key = channelKeyByValue[channel];
+    const dict = translations[langCode] || translations.en;
+    return (key && dict[key]) ? dict[key] : channel;
+  }
+
+  const placementParts = {
+    en: { empty: 'Select where your assistant talks to customers to get a placement tip.', show: (f) => `Show this as the first message, before any other reply, in your ${f}`, pin: (r) => `, and pin it to your ${r}`, tail: '. That timing is what Art. 50(5) requires.' },
+    de: { empty: 'Wählen Sie aus, wo Ihr Assistent mit Kunden spricht, um einen Platzierungstipp zu erhalten.', show: (f) => `Zeigen Sie dies als erste Nachricht, vor jeder anderen Antwort, in Ihrem ${f}`, pin: (r) => `, und heften Sie es an Ihr ${r}`, tail: '. Genau dieses Timing verlangt Art. 50(5).' },
+    fr: { empty: 'Sélectionnez où votre assistant parle à vos clients pour obtenir un conseil de placement.', show: (f) => `Affichez ceci comme premier message, avant toute autre réponse, dans votre ${f}`, pin: (r) => `, et épinglez-le à votre ${r}`, tail: '. C\'est exactement le délai exigé par l\'art. 50(5).' },
+    lt: { empty: 'Pasirinkite, kur jūsų asistentas bendrauja su klientais, kad gautumėte patarimą dėl vietos.', show: (f) => `Rodykite tai kaip pirmą žinutę, prieš bet kokį kitą atsakymą, savo ${f}`, pin: (r) => `, ir prisekite prie savo ${r}`, tail: '. Būtent tokio laiko reikalauja 50(5) straipsnis.' },
+    et: { empty: 'Valige, kus teie assistent klientidega suhtleb, et saada paigutuse soovitus.', show: (f) => `Näidake seda esimese sõnumina, enne mis tahes muud vastust, oma ${f}`, pin: (r) => `, ja kinnitage see ka oma ${r}`, tail: '. Just sellist ajastust nõuab artikkel 50(5).' },
+    hr: { empty: 'Odaberite gdje vaš asistent razgovara s klijentima kako biste dobili savjet o postavljanju.', show: (f) => `Prikažite ovo kao prvu poruku, prije bilo kojeg drugog odgovora, u svom ${f}`, pin: (r) => `, i prikvačite to na svoj ${r}`, tail: '. Upravo to vrijeme zahtijeva čl. 50(5).' },
+    bg: { empty: 'Избери къде асистентът ти общува с клиенти, за да получиш съвет къде да го поставиш.', show: (f) => `Покажи това като първо съобщение, преди всеки друг отговор, в твоя ${f}`, pin: (r) => `, и го закачи и в твоя ${r}`, tail: '. Точно това изисква чл. 50(5) като момент на оповестяване.' }
+  };
+
+  function placementTipFor(channels, langCode){
+    const p = placementParts[langCode] || placementParts.en;
     if (channels.length === 0){
-      return 'Select where your assistant talks to customers to get a placement tip.';
+      return p.empty;
     }
-    const first = channels[0];
-    const rest = channels.slice(1);
-    let text = `Show this as the first message, before any other reply, in your ${first}`;
+    const localized = channels.map((c) => localizedChannel(c, langCode));
+    const first = localized[0];
+    const rest = localized.slice(1);
+    let text = p.show(first);
     if (rest.length){
-      text += `, and pin it to your ${rest.join(', ')}`;
+      text += p.pin(rest.join(', '));
     }
-    text += '. That timing is what Art. 50(5) requires.';
+    text += p.tail;
     return text;
   }
 
-  function noticeFor(name){
-    return `You are interacting with an AI system, not a human. ${name} uses this AI assistant to answer questions and track orders. You may ask to speak with a person on our team at any time.`;
+  const noticeTemplates = {
+    en: (name) => `You are interacting with an AI system, not a human. ${name} uses this AI assistant to answer questions and track orders. You may ask to speak with a person on our team at any time.`,
+    de: (name) => `Sie interagieren mit einem KI-System, nicht mit einem Menschen. ${name} nutzt diesen KI-Assistenten, um Fragen zu beantworten und Bestellungen zu verfolgen. Sie können jederzeit darum bitten, mit einer Person aus unserem Team zu sprechen.`,
+    fr: (name) => `Vous interagissez avec un système d'IA, pas avec un humain. ${name} utilise cet assistant IA pour répondre aux questions et suivre les commandes. Vous pouvez à tout moment demander à parler à une personne de notre équipe.`,
+    lt: (name) => `Jūs bendraujate su DI sistema, o ne su žmogumi. ${name} naudoja šį DI asistentą atsakyti į klausimus ir sekti užsakymus. Bet kada galite paprašyti pakalbėti su mūsų komandos nariu.`,
+    et: (name) => `Te suhtlete tehisintellekti süsteemiga, mitte inimesega. ${name} kasutab seda tehisintellekti assistenti küsimustele vastamiseks ja tellimuste jälgimiseks. Võite igal ajal paluda rääkida meie meeskonna liikmega.`,
+    hr: (name) => `Komunicirate s UI sustavom, a ne s čovjekom. ${name} koristi ovog UI asistenta za odgovaranje na pitanja i praćenje narudžbi. U svakom trenutku možete zatražiti razgovor s osobom iz našeg tima.`,
+    bg: (name) => `Общувате с ИИ система, а не с човек. ${name} използва този ИИ асистент, за да отговаря на въпроси и да проследява поръчки. По всяко време можете да поискате да говорите с човек от нашия екип.`
+  };
+
+  function noticeFor(name, langCode){
+    const fn = noticeTemplates[langCode] || noticeTemplates.en;
+    return fn(name);
   }
 
   function render(){
@@ -1608,8 +1659,9 @@
       statusText.textContent = 'Limited risk — disclosure required';
       okContent.style.display = '';
       flagContent.style.display = 'none';
-      $('noticeText').textContent = `"${noticeFor(name)}"`;
-      $('placementTip').textContent = placementTipFor(channels);
+      const noticeLang = lang.value || 'en';
+      $('noticeText').textContent = `"${noticeFor(name, noticeLang)}"`;
+      $('placementTip').textContent = placementTipFor(channels, noticeLang);
     } else {
       pill.classList.remove('ok'); pill.classList.add('flag');
       statusText.textContent = 'Needs review — possible high-risk use';
@@ -1704,3 +1756,5 @@
   render();
   countUpStats();
 </script>
+</body>
+</html>
