@@ -479,6 +479,16 @@
   }
   .placement-tip b{ color:var(--ink); font-weight:600; }
 
+  .eurlex-link{
+    display:inline-block;
+    font-size:12px;
+    font-weight:600;
+    color:var(--accent-strong);
+    text-decoration:none;
+    margin:-10px 0 18px;
+  }
+  .eurlex-link:hover{ text-decoration:underline; }
+
   .flag-box{
     background:var(--flag-soft);
     border:1px solid var(--flag);
@@ -496,6 +506,7 @@
 
   .rec-actions{
     display:flex;
+    flex-wrap:wrap;
     gap:10px;
     margin-bottom:22px;
   }
@@ -723,6 +734,7 @@
     color:var(--ink-faint);
   }
   .site-foot a{ color:var(--accent-strong); text-decoration:none; }
+  .site-foot-links{ display:flex; gap:18px; flex-wrap:wrap; }
   .site-foot a:hover{ text-decoration:underline; }
 
   .disclaimer{
@@ -891,9 +903,11 @@
           <p id="noticeText">"You are interacting with an AI system, not a human. Nordic Botanica uses this AI assistant to answer questions and track orders. You may ask to speak with a person on our team at any time."</p>
         </div>
         <div class="legal-basis mono">Art. 50(1): natural persons must be informed they are interacting with an AI system. Art. 50(5): in a clear and distinguishable manner, at the latest at the time of first interaction.</div>
+        <a class="eurlex-link" href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689" target="_blank" rel="noopener" data-i18n="eurLexLink">Read the official regulation on EUR-Lex ↗</a>
         <p class="placement-tip" id="placementTip">Show this as the <b>first message</b>, before any other reply — that satisfies "at the latest at the time of first interaction." Pin it in your Website chat widget, and pin it to your Instagram DM welcome note.</p>
         <div class="rec-actions">
           <button class="btn primary" id="copyBtn" data-i18n="btnCopy">Copy notice text</button>
+          <button class="btn" id="downloadBtn" data-i18n="btnDownload">Download as .txt</button>
           <button class="btn" id="printBtn" data-i18n="btnPrint">Print record</button>
           <span class="toast" id="toast" data-i18n="toastCopied">Copied</span>
         </div>
@@ -992,7 +1006,10 @@
 
   <footer class="site-foot">
     <span data-i18n="footerLoc">Transparently — Varna, Bulgaria</span>
-    <a href="mailto:hello@transparently.eu">hello@transparently.eu</a>
+    <span class="site-foot-links">
+      <a href="mailto:hello@transparently.eu">hello@transparently.eu</a>
+      <a href="https://github.com/nikinikolov676-png/transparently-site" target="_blank" rel="noopener" data-i18n="githubLink">Source on GitHub ↗</a>
+    </span>
   </footer>
 </div>
 
@@ -1033,7 +1050,9 @@
       recLabel: `AI Transparency Record`,
       recGenerated: `Generated`,
       statusOk: `Limited risk — disclosure required`,
+      eurLexLink: `Read the official regulation on EUR-Lex ↗`,
       btnCopy: `Copy notice text`,
+      btnDownload: `Download as .txt`,
       btnPrint: `Print record`,
       toastCopied: `Copied`,
       langNotice: `This notice is translated into your selected language using the same plain wording as the English original — have local counsel confirm it before high-stakes use.`,
@@ -1073,6 +1092,7 @@
       founderSig: `— Nikolay, founder`,
       disclaimer: `This tool is informational and does not constitute legal advice. Article 50(1) is framed as a provider obligation, but in practice it's deployers — the businesses running the AI system — who publish this notice to their own users, except where it's already obvious from context that they're talking to AI. This tool covers that limited-risk disclosure only; it doesn't cover Art. 50(3)/50(4) (biometric or emotion-recognition systems, deepfakes, AI-generated text on matters of public interest), high-risk classification, technical documentation, or Member State-specific guidance. Review generated text before publishing it.`,
       footerLoc: `Transparently — Varna, Bulgaria`,
+      githubLink: `Source on GitHub ↗`,
       whatText: `Transparently is a free, independent tool — not a law firm, not a sales pitch. It checks whether your AI assistant needs an EU-mandated disclosure notice under Article 50, and generates one on the spot if it does. Every line is grounded in the regulation's actual wording, not a guess at "best practice."`,
       chipOther: `Other`,
       channelOtherPlaceholder: `Where else? e.g. TikTok DMs`,
@@ -1108,7 +1128,9 @@
       recLabel: `KI-Transparenznachweis`,
       recGenerated: `Erstellt`,
       statusOk: `Geringes Risiko — Hinweispflicht`,
+      eurLexLink: `Offiziellen Verordnungstext auf EUR-Lex lesen ↗`,
       btnCopy: `Hinweistext kopieren`,
+      btnDownload: `Als .txt herunterladen`,
       btnPrint: `Nachweis drucken`,
       toastCopied: `Kopiert`,
       langNotice: `Dieser Hinweis ist in die gewählte Sprache übersetzt, mit demselben einfachen Wortlaut wie das englische Original — lassen Sie ihn vor wichtiger Nutzung von einem Anwalt vor Ort prüfen.`,
@@ -1148,6 +1170,7 @@
       founderSig: `— Nikolay, Gründer`,
       disclaimer: `Dieses Tool dient nur der Information und stellt keine Rechtsberatung dar. Artikel 50(1) ist formal eine Pflicht der Anbieter, in der Praxis veröffentlichen aber die Betreiber — die Unternehmen, die das KI-System einsetzen — diesen Hinweis gegenüber ihren eigenen Nutzern, außer es ist aus dem Kontext bereits offensichtlich, dass es sich um KI handelt. Dieses Tool deckt nur diese Transparenzpflicht mit geringem Risiko ab; es deckt nicht Art. 50(3)/50(4) (biometrische oder emotionserkennende Systeme, Deepfakes, KI-generierte Texte zu Angelegenheiten von öffentlichem Interesse), Hochrisiko-Einstufung, technische Dokumentation oder länderspezifische Vorgaben ab. Prüfen Sie den erzeugten Text vor der Veröffentlichung.`,
       footerLoc: `Transparently — Varna, Bulgarien`,
+      githubLink: `Quellcode auf GitHub ↗`,
       whatText: `Transparently ist ein kostenloses, unabhängiges Tool — keine Anwaltskanzlei, kein Verkaufsgespräch. Es prüft, ob Ihr KI-Assistent einen EU-vorgeschriebenen Hinweis nach Artikel 50 benötigt, und erstellt diesen bei Bedarf sofort. Jede Zeile basiert auf dem tatsächlichen Wortlaut der Verordnung, nicht auf einer Vermutung über „Best Practice".`,
       chipOther: `Sonstiges`,
       channelOtherPlaceholder: `Wo noch? z. B. TikTok-DMs`,
@@ -1183,7 +1206,9 @@
       recLabel: `Registre de transparence IA`,
       recGenerated: `Généré le`,
       statusOk: `Risque limité — avis requis`,
+      eurLexLink: `Lire le texte officiel du règlement sur EUR-Lex ↗`,
       btnCopy: `Copier le texte de l'avis`,
+      btnDownload: `Télécharger en .txt`,
       btnPrint: `Imprimer le registre`,
       toastCopied: `Copié`,
       langNotice: `Cet avis est traduit dans la langue choisie, avec la même formulation simple que l'original anglais — faites-le confirmer par un avocat local avant un usage à enjeux élevés.`,
@@ -1223,6 +1248,7 @@
       founderSig: `— Nikolay, fondateur`,
       disclaimer: `Cet outil est informatif et ne constitue pas un conseil juridique. L'article 50(1) est formellement une obligation du fournisseur, mais en pratique, ce sont les déployeurs — les entreprises qui exploitent le système d'IA — qui publient cet avis auprès de leurs propres utilisateurs, sauf lorsque le contexte rend déjà évident qu'il s'agit d'une IA. Cet outil ne couvre que cette obligation de transparence à risque limité ; il ne couvre pas les art. 50(3)/50(4) (systèmes biométriques ou de reconnaissance des émotions, deepfakes, textes générés par IA sur des sujets d'intérêt public), la classification à haut risque, la documentation technique ni les règles propres à chaque État membre. Relisez le texte généré avant de le publier.`,
       footerLoc: `Transparently — Varna, Bulgarie`,
+      githubLink: `Code source sur GitHub ↗`,
       whatText: `Transparently est un outil gratuit et indépendant — pas un cabinet d'avocats, pas un argumentaire de vente. Il vérifie si votre assistant IA a besoin d'un avis obligatoire selon l'article 50 de l'UE, et en génère un immédiatement si c'est le cas. Chaque ligne repose sur le texte réel du règlement, pas sur une supposition de « bonnes pratiques ».`,
       chipOther: `Autre`,
       channelOtherPlaceholder: `Où encore ? ex. DM TikTok`,
@@ -1258,7 +1284,9 @@
       recLabel: `DI skaidrumo įrašas`,
       recGenerated: `Sukurta`,
       statusOk: `Ribota rizika — būtinas pranešimas`,
+      eurLexLink: `Skaityti oficialų reglamento tekstą EUR-Lex ↗`,
       btnCopy: `Kopijuoti pranešimo tekstą`,
+      btnDownload: `Atsisiųsti kaip .txt`,
       btnPrint: `Spausdinti įrašą`,
       toastCopied: `Nukopijuota`,
       langNotice: `Šis pranešimas išverstas į pasirinktą kalbą, naudojant tą pačią paprastą formuluotę kaip ir anglų originalas — prieš svarbų naudojimą paprašykite vietos teisininko jį patikrinti.`,
@@ -1298,6 +1326,7 @@
       founderSig: `— Nikolay, įkūrėjas`,
       disclaimer: `Šis įrankis yra informacinio pobūdžio ir nėra teisinė konsultacija. Article 50(1) formaliai yra tiekėjo pareiga, tačiau praktiškai šį pranešimą savo naudotojams skelbia diegėjai — verslai, naudojantys DI sistemą — nebent iš konteksto jau aišku, kad bendraujama su DI. Šis įrankis apima tik šią ribotos rizikos skaidrumo pareigą; jis neapima 50(3)/50(4) straipsnių (biometrinių ar emocijas atpažįstančių sistemų, deepfake turinio, DI sugeneruoto teksto viešojo intereso klausimais), didelės rizikos klasifikavimo, techninės dokumentacijos ar konkrečios valstybės narės reikalavimų. Prieš skelbdami sugeneruotą tekstą, jį peržiūrėkite.`,
       footerLoc: `Transparently — Varna, Bulgarija`,
+      githubLink: `Kodas GitHub ↗`,
       whatText: `„Transparently" yra nemokamas, nepriklausomas įrankis — ne advokatų kontora, ne pardavimo pasiūlymas. Jis patikrina, ar jūsų DI asistentui reikalingas ES privalomas pranešimas pagal Article 50, ir, jei taip, iškart jį sugeneruoja. Kiekviena eilutė grindžiama tikru reglamento tekstu, o ne spėjimu apie „gerą praktiką".`,
       chipOther: `Kita`,
       channelOtherPlaceholder: `Kur dar? pvz., TikTok DM`,
@@ -1333,7 +1362,9 @@
       recLabel: `Tehisintellekti läbipaistvuse dokument`,
       recGenerated: `Loodud`,
       statusOk: `Piiratud risk — teatis on nõutav`,
+      eurLexLink: `Loe määruse ametlikku teksti EUR-Lexis ↗`,
       btnCopy: `Kopeeri teatise tekst`,
+      btnDownload: `Laadi alla .txt-na`,
       btnPrint: `Prindi dokument`,
       toastCopied: `Kopeeritud`,
       langNotice: `See teatis on tõlgitud valitud keelde, kasutades sama lihtsat sõnastust nagu ingliskeelne originaal — laske see enne olulist kasutamist kohalikul juristil üle vaadata.`,
@@ -1373,6 +1404,7 @@
       founderSig: `— Nikolay, asutaja`,
       disclaimer: `See tööriist on informatiivne ega kujuta endast õigusnõustamist. Artikkel 50(1) on vormiliselt pakkuja kohustus, kuid praktikas avaldavad selle teatise oma kasutajatele kasutuselevõtjad — ettevõtted, kes tehisintellekti süsteemi käitavad —, välja arvatud juhul, kui kontekstist on juba selge, et tegemist on tehisintellektiga. See tööriist katab ainult seda piiratud riskiga läbipaistvuskohustust; see ei kata artikleid 50(3)/50(4) (biomeetrilised või emotsioone tuvastavad süsteemid, deepfake'id, tehisintellekti loodud tekst avaliku huvi küsimustes), suure riski klassifitseerimist, tehnilist dokumentatsiooni ega liikmesriigipõhiseid nõudeid. Vaadake loodud tekst üle enne avaldamist.`,
       footerLoc: `Transparently — Varna, Bulgaaria`,
+      githubLink: `Lähtekood GitHubis ↗`,
       whatText: `Transparently on tasuta, sõltumatu tööriist — mitte advokaadibüroo, mitte müügipakkumine. See kontrollib, kas teie tehisintellekti assistent vajab ELi kohustuslikku teatist vastavalt Artikkel 50-le, ja genereerib selle vajadusel kohe. Iga rida põhineb määruse tegelikul sõnastusel, mitte oletusel "heast tavast".`,
       chipOther: `Muu`,
       channelOtherPlaceholder: `Kus veel? nt TikTok DM`,
@@ -1408,7 +1440,9 @@
       recLabel: `Zapis o transparentnosti UI-a`,
       recGenerated: `Generirano`,
       statusOk: `Ograničen rizik — obavijest je obvezna`,
+      eurLexLink: `Pročitaj službeni tekst uredbe na EUR-Lexu ↗`,
       btnCopy: `Kopiraj tekst obavijesti`,
+      btnDownload: `Preuzmi kao .txt`,
       btnPrint: `Ispiši zapis`,
       toastCopied: `Kopirano`,
       langNotice: `Ova obavijest prevedena je na odabrani jezik, koristeći istu jednostavnu formulaciju kao i engleski izvornik — prije važnije upotrebe neka je potvrdi lokalni odvjetnik.`,
@@ -1448,6 +1482,7 @@
       founderSig: `— Nikolay, osnivač`,
       disclaimer: `Ovaj alat je informativan i ne predstavlja pravni savjet. Članak 50(1) formalno je obveza pružatelja, no u praksi ovu obavijest svojim korisnicima objavljuju korisnici sustava (deployeri) — poduzeća koja koriste UI sustav — osim ako iz konteksta već nije očito da se radi o UI-u. Ovaj alat pokriva samo tu obvezu transparentnosti ograničenog rizika; ne pokriva čl. 50(3)/50(4) (biometrijske ili sustave za prepoznavanje emocija, deepfakeove, UI generirani tekst o pitanjima od javnog interesa), klasifikaciju visokog rizika, tehničku dokumentaciju niti zahtjeve pojedinih država članica. Prije objave pregledajte generirani tekst.`,
       footerLoc: `Transparently — Varna, Bugarska`,
+      githubLink: `Izvorni kod na GitHubu ↗`,
       whatText: `Transparently je besplatan, neovisan alat — nije odvjetnički ured, nije prodajna ponuda. Provjerava treba li vašem UI asistentu EU obvezna obavijest prema članku 50, i odmah je generira ako treba. Svaki redak temelji se na stvarnom tekstu uredbe, a ne na pretpostavci o "dobroj praksi".`,
       chipOther: `Ostalo`,
       channelOtherPlaceholder: `Gdje još? npr. TikTok DM`,
@@ -1483,7 +1518,9 @@
       recLabel: `Запис за прозрачност на ИИ`,
       recGenerated: `Генерирано`,
       statusOk: `Ограничен риск — изисква се известие`,
+      eurLexLink: `Прочети официалния текст на регламента в EUR-Lex ↗`,
       btnCopy: `Копирай текста на известието`,
+      btnDownload: `Свали като .txt`,
       btnPrint: `Разпечатай записа`,
       toastCopied: `Копирано`,
       langNotice: `Това известие е преведено на избрания от вас език, със същата опростена формулировка като английския оригинал — преди да го използвате за нещо по-сериозно, дай го за проверка на местен юрист.`,
@@ -1523,6 +1560,7 @@
       founderSig: `— Николай, основател`,
       disclaimer: `Този инструмент е информативен и не представлява правен съвет. Член 50(1) формално е задължение на доставчика, но на практика точно внедрителите — бизнесите, които използват ИИ системата — публикуват това известие пред собствените си потребители, освен когато от контекста вече е ясно, че се общува с ИИ. Този инструмент покрива само това задължение за прозрачност с ограничен риск; не покрива чл. 50(3)/50(4) (биометрични или разпознаващи емоции системи, дийпфейкове, генериран от ИИ текст по въпроси от обществен интерес), класификация на висок риск, техническа документация или специфични изисквания на отделни държави членки. Прегледай генерирания текст, преди да го публикуваш.`,
       footerLoc: `Transparently — Варна, България`,
+      githubLink: `Код в GitHub ↗`,
       whatText: `Transparently е безплатен, независим инструмент — не адвокатска кантора, не търговско предложение. Проверява дали твоят AI асистент се нуждае от задължително по закона известие по член 50, и го генерира веднага, ако е нужно. Всеки ред се основава на реалния текст на регламента, не на предположение за "добра практика".`,
       chipOther: `Друго`,
       channelOtherPlaceholder: `Къде другаде? напр. TikTok директни съобщения`,
@@ -1647,7 +1685,7 @@
     const ref = `ATR-${compact}-${initials(name)}`;
 
     $('recRef').textContent = ref;
-    $('recDate').innerHTML = `Generated<br>${human}`;
+    $('recDate').textContent = human;
     $('sigName').textContent = signatory.value.trim() || '—';
     $('sigRef').textContent = ref;
 
@@ -1719,6 +1757,35 @@
     }
     toast.classList.add('show');
     setTimeout(() => toast.classList.remove('show'), 1800);
+  });
+
+  $('downloadBtn').addEventListener('click', () => {
+    const name = bizname.value.trim() || 'Your business';
+    const noticeText = $('noticeText').textContent.replace(/^"|"$/g, '');
+    const lines = [
+      'AI Transparency Record',
+      `Record id: ${$('recRef').textContent}`,
+      `Business: ${name}`,
+      `Signed: ${$('sigName').textContent}`,
+      '',
+      'Notice text:',
+      noticeText,
+      '',
+      'Legal basis:',
+      document.querySelector('.legal-basis').textContent,
+      '',
+      'Placement:',
+      $('placementTip').textContent
+    ].join('\n');
+    const blob = new Blob([lines], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${$('recRef').textContent}-ai-transparency-notice.txt`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
   });
 
   $('printBtn').addEventListener('click', () => window.print());
